@@ -1,0 +1,104 @@
+<ion-view>
+
+    <!--header bar of add to do-->
+<!--    <ion-nav-back-button class="white button-clear" style="margin-top: 6px;">
+        <i class="ion-chevron-left white"></i>
+    </ion-nav-back-button>-->
+            <ion-nav-bar class="bgcolor mybar no-border">
+
+            <ion-nav-buttons side="left">
+                <button style="padding-top:12px;color: #ffffff;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
+                </button>
+                <label class="crthead defaultText">
+                    <span side="left" class="bigLabel">
+                        <span style="font-size: 18px; width:100%">Add Task</span>
+<!--                        <span class="" style="color:#FFFFFF;position: relative;">
+                            <p>{{loggedUser}}</p>
+                        </span>-->
+                    </span>
+                </label>
+            </ion-nav-buttons>
+                
+            <ion-nav-buttons side="right">
+                <button style="padding-top:12px; padding-right: 15px; color: #ffffff; font-size: 14px;" class="button button-icon button-clear" on-tap="addTodo()">
+                    SAVE
+                </button>
+                </ion-nav-buttons>
+            
+        </ion-nav-bar>
+
+<!--    <ion-nav-view name="menuContent">
+
+    </ion-nav-view>-->
+
+    <ion-content class="has-my-bar no-border" >
+        <ion-list class="crtList">
+
+            <ion-item class="items bgcolor no-border">
+                <label class="txtbx item-input item-floating-label">
+                    <span class="input-label" style="color: 8dbee0; margin-bottom: 20px;">Task Name</span>
+                    <textarea placeholder="Task Name" id="txtbx" ng-model="mytask.title"></textarea>
+                </label>
+                
+            </ion-item>
+            <!--            <ion-item>
+                           
+                            <div class="myDiv ">
+                                <label class="item-input">
+                                    <input type="text" placeholder="Tags" ng-model="mytag" ng-keyup="tagFn()">
+                                </label>
+                            </div>
+                        </ion-item>-->
+            <ion-item>
+                <div class="myDiv no-border">
+                    <label >
+                        <button class="button button-icon " 
+                                style="color:#ccc;" on-tap="showReminder=true;" ng-hide="showReminder">
+                            <i class="icon placeholder-icon ion-android-notifications" style="color:#888a89;"></i> <span class="remind">Remind me</span>
+                        </button>
+                    </label>
+                    <nav ng-show="showReminder" class="" close-submenu>
+                        <button class="button button-icon icon-left placeholder-icon ion-clock" 
+                                style="color:#888a89;position: absolute;padding-right:  20px;">
+                        </button>
+                        <ul style="margin-left: 40px;" on-tap="blank();">
+                            <li class="current-menu-item"><a id="dateBtn">{{mydate.title}}</a>
+                                <ul ng-show="reminderTime.isDateDisplaying" style="border-top:1px solid black;">
+                                    <li><a on-tap="showDate(myDates[0].title,$event)">{{myDates[0].title}}</a></li>
+                                    <li><a on-tap="showDate(myDates[1].title,$event)">{{myDates[1].title}}</a></li>
+                                    <li class="grey"><a on-tap="showDate(myDates[2].title, $event)" >{{myDates[2].title}}</a></li>
+                                </ul>
+                                <!--<ul><li><input type="text" ng-model="model.date" disabled=""></li></ul>-->
+                            </li>
+                            <li><a id="timeBtn">{{mytime.title}}</a>
+                                <ul ng-show="reminderTime.isTimeDisplaying" style="border-top:1px solid black;">
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[0].title)"><span class="time">{{myTimes[0].title}}</span><span class="tiny grey">{{myTimes[0].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[1].title)"><span class="time">{{myTimes[1].title}}</span><span class="tiny">{{myTimes[1].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[2].title)"><span class="time">{{myTimes[2].title}}</span><span class="tiny">{{myTimes[2].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[3].title)"><span class="time">{{myTimes[3].title}}</span><span class="tiny">{{myTimes[3].dtime}}</span></a></li>
+                                    <li class="grey pad-bot7"><a on-tap="showTime($event,myTimes[4].title)"><span class="time">{{myTimes[4].title}}</span></a></li>
+                                </ul>
+                                <!--<ul><li><input type="text" ng-model="model.time" disabled=""></li></ul>-->
+                            </li>
+                        </ul>
+                        <button class="button button-icon icon-left placeholder-icon ion-close-circled" 
+                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:6px;" on-tap="noReminder()">
+                        </button>
+                    </nav>
+                </div>
+            </ion-item>
+<!--            <ion-item class="no-border">
+                <div class="block">
+                    <button class="white no-border button bgcolor" on-tap="addTodo()">Create</button>
+                </div>
+            </ion-item>-->
+        </ion-list>
+    </ion-content>
+<ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
+        <h1 class="title">Title</h1>
+        <div class="buttons" ng-click="createTodo()">
+            <button class="create-btn button addcolor1 ion-plus-round " style="font-size:20px ; "> 
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view>
+
+    <!--header bar of add to do-->
+    <ion-content class="has-my-bar">
+        <ion-list>
+            <ion-refresher pulling-text="pull to refresh" on-refresh="refreshMe()">
+            </ion-refresher>  
+            <ion-item>
+            </ion-item>
+            <ion-item ng-repeat="todoItem in todoList| category track by $index" 
+                      class=" defaultText default "
+                      on-hold="callEdit($index, todoItem)">
+                <ion-checkbox class="{{todoItem.completed}}" style="border: none;" 
+                              ng-checked="todoItem.done" ng-model="todoItem.done" ng-change="completedRecord(todoItem, $index)">
+                    <span class="left" style="font-weight: lighter;padding-left: 35px;">{{todoItem.title}}</span> 
+                    <i ng-hide="todoItem.parseStatus" class="right rightLabel" style="margin-right: 2px;">{{todoItem.time|date:'hh:mma'}}</i>
+                </ion-checkbox>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+    <!--footer bar of add to do-->
+    <ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
+        <h1 class="title">Title!</h1>
+        <div class="buttons" ng-click="createTodo()">
+            <button class="button button-calm ion-plus-round" style="font-size:20px ; width:60px ; height:60px ;border:1px solid white ;border-radius: 30px;z-index: 9;position: relative;bottom: 50px;right:10px;"> 
+            </button>
+        </div>
+    </ion-footer-bar>
+</ion-view>
+

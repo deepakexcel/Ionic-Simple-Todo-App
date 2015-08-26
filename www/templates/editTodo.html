@@ -1,0 +1,78 @@
+<ion-view>
+
+    <!--header bar of add to do-->
+
+    <ion-nav-bar class="bgcolor mybar no-border">
+        <ion-nav-back-button class="white button-clear ion-android-arrow-back" style="margin-top: 6px; color: #ffffff;">
+            <!--<i class="ion-chevron-left white"></i>-->
+        </ion-nav-back-button>
+        <ion-nav-buttons side="left">
+
+            <label class="crthead defaultText">
+                <span side="left" class="bigLabel">
+                    <span style="font-size: 18px; width:100%">Edit Task</span>
+                   
+                </span>
+            </label>
+        </ion-nav-buttons>
+
+        <ion-nav-buttons side="right">
+            <button style="padding-top:12px; padding-right: 15px; color: #ffffff;" class="button button-icon button-clear ion-android-done" on-tap="editRecordd();">
+
+            </button>
+        </ion-nav-buttons>
+
+    </ion-nav-bar>    
+
+    <ion-content class="has-my-bar" >
+        <ion-list class="crtList">
+
+            <ion-item class="items bgcolor">
+
+                <label class="txtbx item-input item-floating-label" >
+                    <span class="input-label" style="color: #AACFEC; margin-bottom: 15px;" >Task Name</span>
+
+                    <textarea  placeholder="Task Name" class="txtbxx" ng-model="mytask.title"></textarea>
+                </label>
+
+            </ion-item>
+
+
+            <ion-item>
+                <div class="myDiv no-border">
+
+                    <nav class="" close-submenu>
+                        <button class="button button-icon icon-left placeholder-icon ion-clock" 
+                                style="color:#888a89;position: absolute;padding-right:  20px;">
+                        </button>
+                        <ul style="margin-left: 40px;" on-tap="blank();">
+                            <li class="current-menu-item"><a id="dateBtn">{{mydate.title}}</a>
+                                <ul ng-show="reminderTime.isDateDisplaying" style="border-top:1px solid black;">
+                                    <li><a on-tap="showDate(myDates[0].title,$event)">{{myDates[0].title}}</a></li>
+                                    <li><a on-tap="showDate(myDates[1].title,$event)">{{myDates[1].title}}</a></li>
+                                    <li class="grey"><a on-tap="showDate(myDates[2].title, $event)" >{{myDates[2].title}}</a></li>
+                                </ul>
+                                <!--<ul><li><input type="text" ng-model="model.date" disabled=""></li></ul>-->
+                            </li>
+                            <li class="current-menu-item"><a id="timeBtn">{{mytime.title}}</a>
+                                <ul ng-show="reminderTime.isTimeDisplaying" style="border-top:1px solid black;">
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[0].title)"><span class="time">{{myTimes[0].title}}</span><span class="tiny grey">{{myTimes[0].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[1].title)"><span class="time">{{myTimes[1].title}}</span><span class="tiny">{{myTimes[1].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[2].title)"><span class="time">{{myTimes[2].title}}</span><span class="tiny">{{myTimes[2].dtime}}</span></a></li>
+                                    <li class="pad-bot7"><a on-tap="showTime($event,myTimes[3].title)"><span class="time">{{myTimes[3].title}}</span><span class="tiny">{{myTimes[3].dtime}}</span></a></li>
+                                    <li class="grey pad-bot7"><a on-tap="showTime($event,myTimes[4].title)"><span class="time">{{myTimes[4].title}}</span></a></li>
+                                </ul>
+                                <!--<ul><li><input type="text" ng-model="model.time" disabled=""></li></ul>-->
+                            </li>
+                        </ul>
+                        <button class="button button-icon icon-left placeholder-icon ion-close-circled" 
+                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:6px;" on-tap="noReminder()">
+                        </button>
+                    </nav>
+                </div>
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+
+</ion-view>

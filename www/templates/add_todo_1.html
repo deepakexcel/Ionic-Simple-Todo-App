@@ -1,0 +1,19 @@
+<ion-list>
+            <ion-item class="item-divider default" style="" ng-show="completedTask.length">
+                <label class="left capital lineheight">Completed</label>
+                <button class="button-clear ion-chevron-down" on-tap="showCompleted()"
+                        style="display:inline-block; float: right;">
+
+                </button>
+            </ion-item>
+            <ion-item ng-repeat="todoItem in completedTask = (todoList|filter:{done:true}) track by $index" 
+                      class="defaultText default {{todoItem.completed}}"
+                      on-hold="callEdit($index, todoItem)" ng-show="isCompletedVisible">
+                <ion-checkbox class="{{todoItem.completed}}" style="border: none;text-decoration: line-through;" 
+                              ng-checked="todoItem.done" ng-model="todoItem.done" ng-change="completedRecord(todoItem, $index)">
+                    <span class="left {{todoItem.completed}}" style="font-weight: lighter;padding-left: 38px;">{{todoItem.title}}</span> 
+                    <i ng-hide="todoItem.parseStatus" class="beLabel right rightLabel{{todoItem.completed}}" style="margin-right: 2px;">{{todoItem.time|date:'MMMd'}}</i>
+                </ion-checkbox>
+            </ion-item>
+
+        </ion-list>

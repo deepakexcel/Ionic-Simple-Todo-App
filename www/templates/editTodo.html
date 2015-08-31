@@ -1,28 +1,29 @@
-<ion-view>
+<ion-view view-title="" cache-view="false">
 
     <!--header bar of add to do-->
 
-    <ion-nav-bar class="bgcolor mybar no-border">
-        <ion-nav-back-button class="white button-clear ion-android-arrow-back" style="margin-top: 6px; color: #ffffff;">
-            <!--<i class="ion-chevron-left white"></i>-->
-        </ion-nav-back-button>
-        <ion-nav-buttons side="left">
+    <!--<ion-nav-bar class="bgcolor mybar no-border">-->
+    <!--    <ion-nav-back-button class="white button-clear " style="margin-top: 6px; color: #ffffff;">
+                <i class="ion-android-arrow-back white"></i>
+            </ion-nav-back-button>-->
 
-            <label class="crthead defaultText">
-                <span side="left" class="bigLabel">
-                    <span style="font-size: 18px; width:100%">Edit Task</span>
-                   
-                </span>
-            </label>
-        </ion-nav-buttons>
+    <ion-nav-buttons side="left">
 
-        <ion-nav-buttons side="right">
-            <button style="padding-top:12px; padding-right: 15px; color: #ffffff;" class="button button-icon button-clear ion-android-done" on-tap="editRecordd();">
+        <label class="crthead defaultText">
+            <span side="left" class="bigLabel">
+                <span style="font-size: 18px; width:100%">Edit Task</span>
 
-            </button>
-        </ion-nav-buttons>
+            </span>
+        </label>
+    </ion-nav-buttons>
 
-    </ion-nav-bar>    
+    <ion-nav-buttons side="right">
+        <button style="padding-top:12px; padding-right: 15px; color: #ffffff;" class="button button-icon button-clear ion-android-done" on-tap="editRecordd();">
+
+        </button>
+    </ion-nav-buttons>
+
+    <!--</ion-nav-bar>-->    
 
     <ion-content class="has-my-bar" >
         <ion-list class="crtList">
@@ -32,7 +33,7 @@
                 <label class="txtbx item-input item-floating-label" >
                     <span class="input-label" style="color: #AACFEC; margin-bottom: 15px;" >Task Name</span>
 
-                    <textarea  placeholder="Task Name" class="txtbxx" ng-model="mytask.title"></textarea>
+                    <input type="text"  placeholder="Task Name" id="txtbxx" ng-model="mytask.title" >
                 </label>
 
             </ion-item>
@@ -65,14 +66,20 @@
                                 <!--<ul><li><input type="text" ng-model="model.time" disabled=""></li></ul>-->
                             </li>
                         </ul>
-                        <button class="button button-icon icon-left placeholder-icon ion-close-circled" 
-                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:6px;" on-tap="noReminder()">
-                        </button>
+                        
                     </nav>
                 </div>
             </ion-item>
 
         </ion-list>
     </ion-content>
+    <ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
+        <h1 class="title">Title</h1>
+        <div class="buttons" ng-click="editRecordd();">
+            <button class="create-btn button addcolor ion-android-create " style="font-size:30px ; "> 
 
+            </button>
+            <!--<img src="images/facebookIcon.png" alt=""/>-->
+        </div>
+    </ion-footer-bar>
 </ion-view>

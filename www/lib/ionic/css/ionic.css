@@ -17,10 +17,10 @@
   https://twitter.com/benjsperry  https://twitter.com/ionicframework
   MIT License: https://github.com/driftyco/ionicons
 
-  Android-style icons originally built by Googleâ€™s
+  Android-style icons originally built by GoogleÃ¢â‚¬â„¢s
   Material Design Icons: https://github.com/google/material-design-icons
   used under CC BY http://creativecommons.org/licenses/by/4.0/
-  Modified icons to fit ioniconâ€™s grid from original.
+  Modified icons to fit ioniconÃ¢â‚¬â„¢s grid from original.
 */
 @font-face {
   font-family: "Ionicons";
@@ -2321,7 +2321,7 @@ body {
  * Remove default outlines.
  */
 a, button, :focus, a:focus, button:focus, a:active, a:hover {
-  outline: 0; }
+  /* outline: 0; */ }
 
 /* *
  * Remove tap highlight color
@@ -3157,10 +3157,10 @@ a.subdued {
     position: absolute;
     top: 0;
     right: 0;
-    left: 0;
+    left: 100px;
     z-index: 0;
     overflow: hidden;
-    margin: 11px 10px 0px 100px;
+    /* margin: 10px 10% 0px 25%; */
     min-width: 30px;
     height: 43px;
     text-align: center;
@@ -3178,7 +3178,7 @@ a.subdued {
     color: inherit; }
   .bar .button {
     z-index: 1;
-    padding: 0 8px;
+    /* padding: 0 8px; */
     min-width: initial;
     min-height: 31px;
     font-weight: 400;
@@ -3222,7 +3222,8 @@ a.subdued {
     display: inline-block; }
   .bar .buttons-left span {
     margin-right: 5px;
-    display: inherit; }
+    display: inherit; 
+}
   .bar .buttons-right span {
     margin-left: 5px;
     display: inherit; }
@@ -4664,8 +4665,8 @@ ion-tabs.tabs-color-active-dark .tab-item {
   display: block;
   margin: -1px;
   padding: 16px;
-  border-width: 1px;
-  border-style: solid;
+  /* border-width: 1px; */
+  /* border-style: solid; */
   font-size: 16px; }
   .item h2 {
     margin: 0 0 2px 0;
@@ -5102,7 +5103,9 @@ a.item-content {
   min-height: 30px;
   background-color: #f5f5f5;
   color: #222;
-  font-weight: 500; }
+  font-weight: 500; 
+  text-align: center;
+}
 
 .platform-ios .item-divider-platform, .item-divider-ios {
   padding-top: 26px;
@@ -5300,8 +5303,8 @@ a.item-content {
 .list {
   position: relative;
   /* padding-top: 1px; */
-  padding-bottom: 1px;
-  padding-left: 0;
+  /* padding-bottom: 1px; */
+  /* padding-left: 0; */
   margin-bottom: 20px; 
 }
 
@@ -5664,7 +5667,8 @@ legend {
 label, input, button, select, textarea {
   font-weight: normal;
   font-size: 14px;
-  line-height: 1.42857; }
+  line-height: 1.42857; 
+}
 
 input, button, select, textarea {
   font-family: "Helvetica Neue", "Roboto", "Segoe UI", sans-serif; }
@@ -6050,7 +6054,7 @@ input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="rad
   top: 50%;
   right: 8px;
   left: 8px;
-  z-index: 3;
+  z-index: 0;
   margin-top: -21px; }
 
 .item-checkbox.item-checkbox-right {

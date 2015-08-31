@@ -1,10 +1,10 @@
-<ion-view>
+<ion-view view-title="" cache-view="false">
 
     <!--header bar of add to do-->
 <!--    <ion-nav-back-button class="white button-clear" style="margin-top: 6px;">
-        <i class="ion-chevron-left white"></i>
+        <i class="ion-android-close white"></i>
     </ion-nav-back-button>-->
-            <ion-nav-bar class="bgcolor mybar no-border">
+            <!--<ion-nav-bar class="bgcolor mybar no-border">-->
 
             <ion-nav-buttons side="left">
                 <button style="padding-top:12px;color: #ffffff;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
@@ -25,19 +25,20 @@
                 </button>
                 </ion-nav-buttons>
             
-        </ion-nav-bar>
+        <!--</ion-nav-bar>-->
 
 <!--    <ion-nav-view name="menuContent">
 
     </ion-nav-view>-->
 
     <ion-content class="has-my-bar no-border" >
+        <form>
         <ion-list class="crtList">
 
             <ion-item class="items bgcolor no-border">
                 <label class="txtbx item-input item-floating-label">
-                    <span class="input-label" style="color: 8dbee0; margin-bottom: 20px;">Task Name</span>
-                    <textarea placeholder="Task Name" id="txtbx" ng-model="mytask.title"></textarea>
+                    <span class="input-label" style="color: 8dbee0; margin-bottom: 20px; font-size: 18px;">Task Name</span>
+                    <input type="text" placeholder="Task Name" id="txtbx" ng-model="mytask.title" ng-keydown="go($event)">
                 </label>
                 
             </ion-item>
@@ -49,7 +50,7 @@
                                 </label>
                             </div>
                         </ion-item>-->
-            <ion-item>
+            <ion-item class="cntnttsk">
                 <div class="myDiv no-border">
                     <label >
                         <button class="button button-icon " 
@@ -93,10 +94,11 @@
                 </div>
             </ion-item>-->
         </ion-list>
+        </form>
     </ion-content>
 <ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
         <h1 class="title">Title</h1>
-        <div class="buttons" ng-click="createTodo()">
+        <div class="buttons" ng-click="addTodo()">
             <button class="create-btn button addcolor1 ion-plus-round " style="font-size:20px ; "> 
             </button>
         </div>

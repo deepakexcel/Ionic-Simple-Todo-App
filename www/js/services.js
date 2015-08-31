@@ -238,7 +238,31 @@ angular.module('starter.services', [])
                 });
                 return myResponse.promise;
             };
-
+            
+            service.searchData = function(value){
+                var myToDoQuery = new Parse.Query(ToDoObject);
+                var myResponse = $q.defer();
+                var myDataObj = {};
+                var ddd = myToDoQuery.contains("todo_title", value);
+                myToDoQuery.get(value, {
+                    success: function (responseObj)
+                    {
+                        // The object was retrieved successfully.
+                        myDataObj.time = responseObj.get("time");
+                        myDataObj.parseStatus = responseObj.get("parseStatus");
+                        myDataObj.title = responseObj.get("todo_title");
+                        myDataObj.done = responseObj.get("done");
+                        myResponse.resolve(myDataObj);
+                    },
+                    error: function (error) {
+                        // The object was not retrieved successfully.
+                        // error is a Parse.Error with an error code and message.
+                        myResponse.reject(error.message);
+                    }
+                });
+                return myResponse.promise;
+            }
+            
             service.update = function (item_pos, uid, toUpdateobj) {
 //                var toUpdateValue = toUpdateobj.title;
                 var promiseObject = $q.defer();

@@ -102,13 +102,14 @@ angular.module('fb.controller', [])
                         if (response.authResponse) {
                             console.log("FB CHECKING PHONE");
                             console.log(JSON.stringify(response));
-                            self.processFacebook();
+
                             console.log(response);
 
                         } else {
                             // user is not logged in
                             console.log("failed");
                         }
+                        self.processFacebook();
                     });
                 }
 //                for desktop

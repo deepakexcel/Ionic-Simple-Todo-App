@@ -4,7 +4,7 @@
 }
 .empty{
     text-align: center;
-    padding: 43% 0px 0px 0;;
+    padding: 40% 0px 0px 0;;
 }
 
 .empty_btn{
@@ -50,35 +50,46 @@
     border:1px solid #2a8dd1;
 }
 .todayCheck{    
-    height: 30px;
+    height: 40px;
     width: 32px;
-    }
+    font-size: 31px;
+}
 
 .beLabelSpn{
     font-size: 13px;
     color: #897E7E;
-    padding: 0px 0px 0px 6px;
+    padding: 0px 0px 0px 5px;
 }
 .taskToday{
     color: black;
     font-weight: lighter;
     padding-left: 40px;    
-    padding-bottom: 5px;
-    padding-top: 3px;
+    padding-bottom: 0px;
+    padding-top: 4px;
     font-size: 15px;
 }
 
 .taskToday1{
     color: grey;
     font-weight: lighter;
-    padding-left: 40px;    
-    padding-bottom: 5px;
+    padding-left: 42px;    
+    padding-bottom: 14px;
+    padding-top: 6px;
+    font-size: 16px;
+    /* margin: -33px 0 0 0; */
+}
+.taskToday2{
+    color: grey;
+    font-weight: lighter;
+    padding-left: 42px;    
+    padding-bottom: 0px;
     padding-top: 3px;
     font-size: 16px;
+    /* margin: -33px 0 0 0; */
 }
 
 .todo2day{
-    padding: 15px 0px 5px 7px;
+    padding: 10px 0px 5px 7px;
 }
 
 .menucntnt{
@@ -131,9 +142,9 @@
 }
 .userIcon1{
     text-align: center;
-    border: 1px solid lightgray;
-    height: 60px;
-    width: 60px;
+    /* border: 1px solid lightgray; */
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     float: left;
     margin-top: 0px;
@@ -142,7 +153,7 @@
 .userMain{
     padding: 0px 0 25px 15px;
     
-    border-bottom: 1px solid rgb(224, 219, 219);
+    border-bottom: 1px solid rgba(207, 205, 205, 0.58);
     /* float: left; */
 }
 
@@ -189,31 +200,96 @@
     
 }
 
-.txtbxx{
+#txtbxx{
     color: whitesmoke;
     border-bottom: 1.5px solid #aacae3;
     background-color: #2a8dd1;
     height: 30px;
+    font-size: 18px;
 }
 #txtbx{
     color: whitesmoke;
     border-bottom: 1.5px solid #aacae3;
     background-color: #2a8dd1;
     height: 30px;
+    font-size: 18px;
+    text-decoration: none;
+    text-transform: none;
 }
 .crthead{
-    padding: 17px 0px 0 2px;
+    padding: 17px 0 0 0;
     
     font-family: sans-serif;
+    margin: 0 0 0 0;
 }
 
 .userdiv{
-    margin-left: 75px;
+    margin-left: 60px;
     
     margin-top: 5px;
-    padding-top: 12px;
+    padding-top: 8px;
 }
 
 .menuOpt{
     padding: 0 0 0 10px;
+}
+.cntnttsk{
+    border-bottom: none!important;
+}
+.btn_cls{
+    float: right;
+    
+    width: 32px;
+    margin: -32px 6px 0px 0px;
+    background-color: white;
+    border: none;
+}
+.btn_cls1{
+    float: right;
+    
+    width: 32px;
+    margin: -36px 6px 0px 0px;
+    background-color: white;
+    border: none;
+}
+.titl{
+    margin:  0 0 0 160px;
+    
+}
+.setIcn{
+    /* display: none; */
+      
+}
+
+.checkIcn{
+    color: rgb(221, 221, 221);
+    
+    z-index: 5;
+    position: absolute;
+    font-size: 28px;
+    background-color: white;
+    margin: -5px 0 0 0px;
+}
+
+.titlSpan{
+    margin: 0 0 0 200%;
+    
+}
+
+.titlSpancmp{
+    margin: 0 0 0 90%;    
+}
+
+.bgcolor1{
+    background-color: #03a9f4;
+}
+
+.srchtxt{
+    width: 200%;
+    
+    background-color: #2a8dd1;
+    
+    /* padding: 0 0 40px 0; */
+    margin: -10px 0 0 0;
+    height: 50px!important;
 }

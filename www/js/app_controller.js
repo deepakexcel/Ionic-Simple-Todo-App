@@ -1,13 +1,35 @@
 angular.module('app.controller', [])
 
         .controller('AppCtrl', function ($scope, Alertuser, $timeout, $cordovaNetwork, ConnectParse, $q, $state, $rootScope, $localStorage, $ionicLoading) {
-            $scope.loggedUser = $localStorage["loggedUsername"];
-            if($localStorage["google_user"]){
-            $scope.userprofile = $localStorage["google_user"].profile;
-            $scope.emailid = $localStorage["google_user"].email;
-        }
+            
             $scope.$on('$ionicView.enter', function () {
                 
+                if (window.cordova) {
+                if ($localStorage['Initializer'].length > 18) {
+                    $scope.loggedUser = $localStorage["loggedUsername"];
+                    if ($localStorage["google_user"]) {
+                        $scope.userprofile = $localStorage["google_user"].profile;
+                        $scope.emailid = $localStorage["google_user"].email;
+                    }
+                } else {
+                    $scope.loggedUser = $localStorage["loggedUsername"];
+                    $scope.userprofile = "images/facebookIcon.png";
+                }
+            } else {
+                 if ($localStorage['Initializer'].length > 18) {
+                    $scope.loggedUser = $localStorage["loggedUsername"];
+                    if ($localStorage["google_user"]) {
+                        $scope.userprofile = $localStorage["google_user"].profile;
+                        $scope.emailid = $localStorage["google_user"].email;
+                    } else {
+                        $scope.userprofile = "images/google.png"
+                    }
+                } else {
+                    $scope.loggedUser = $localStorage["loggedUsername"];
+                    $scope.userprofile = "images/facebookIcon.png"
+                }
+            }
+
                 if ($localStorage["Initializer"]) {
                     $rootScope.ifLoogedIn = true;
                 }
@@ -20,11 +42,11 @@ angular.module('app.controller', [])
                                     for (var i = 0; i < result.length; i++) {
                                         //put all tags together ever used by user
                                         var tagString = result[i].get("todoTag");
-                                        if(tagString){
+                                        if (tagString) {
                                             var userTags = tagString.split(",");
                                         }
-                                        else{
-                                            var userTags="";
+                                        else {
+                                            var userTags = "";
                                         }
                                         for (var j = 0; j < userTags.length; j++) {
                                             tags.push(userTags[j]);
@@ -73,21 +95,21 @@ angular.module('app.controller', [])
                     maxWidth: 100,
                     showDelay: 0
                 });
-               
+
                 delete $localStorage["Initializer"];
                 delete $localStorage["Parse/F8TOhK8zoN69mY0OydaZBgVOcFT4xAxlLYegGFX2/installationId"];
                 console.log("a");
-                
+
                 $timeout(function () {
-                    
-                     $state.go('app.addTodo');
-                     $ionicLoading.hide();
+
+                    $state.go('app.addTodo');
+                    $ionicLoading.hide();
                 }, 1000);
                 Alertuser.alert("Logging out..");
                 $rootScope.ifLoogedIn = false;
-               
-               
-               
+
+
+
                 console.log("c");
             }; // end of logout function
         });

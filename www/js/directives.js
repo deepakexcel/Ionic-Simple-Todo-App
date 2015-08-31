@@ -48,6 +48,10 @@ angular.module('starter.directives', [])
                     });
                 }
             };
+        })
+        .directive('tj:focus', function (scope, element) {
+            
+                element[0].focus();
+           
         });
-
 

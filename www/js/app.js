@@ -8,17 +8,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                     $rootScope.ifdeviceReady = true;
                     if (window.cordova && window.cordova.plugins.Keyboard) {
                         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+                        cordova.plugins.Keyboard.disableScroll(true);
                     }
                     if (window.StatusBar) {
                         // org.apache.cordova.statusbar required
                         StatusBar.styleDefault();
                     }
-
-//                    else if($location.path("/login") && $localStorage['Initializer']) {
-//                         $state.go("app.addTodo");
-//                        //$state.go("login");
-//                    }
-//                    console.log("timeout 5");
+                    
 
                 }
                 $interval(function() {

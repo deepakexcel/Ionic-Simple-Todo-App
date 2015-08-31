@@ -1,18 +1,18 @@
-textArea::-webkit-input-placeholder{
+input::-webkit-input-placeholder{
     color:#8dbee0;
 }
-textArea:-moz-placeholder {
+input:-moz-placeholder {
     color:#8dbee0;
 }
-textArea:-moz-placeholder { /* Firefox 18- */
+input:-moz-placeholder { /* Firefox 18- */
    color: #8dbee0;  
 }
 
-textArea::-moz-placeholder {  /* Firefox 19+ */
+input::-moz-placeholder {  /* Firefox 19+ */
    color: #8dbee0;  
 }
 
-textArea:-ms-input-placeholder {  
+input:-ms-input-placeholder {  
    color: #8dbee0;  
 }
 body{
@@ -45,6 +45,7 @@ body{
 }
 .logout{
     cursor: pointer;
+    border-bottom: 1px solid black;
 }
 .myDiv{
     padding: 5px 5px 5px 5px;
@@ -100,6 +101,7 @@ body{
     border: none!important;
     text-align: center;
     border: 1px solid #2a8dd1;
+    background-color: #2a8dd1!important;
 }
 .has-my-bar{
     top: 69px;
@@ -111,7 +113,7 @@ body{
     top:30%;
 }
 .mydivider{
-    border-bottom: 1px solid #2a8dd1;
+    /* border-bottom: 1px solid #2a8dd1; */
 }
 .item{
     color: #000;
@@ -120,7 +122,6 @@ body{
     padding-top: 5px;
     padding-bottom: 0px;
 
-    /* border: none; */
 }
 .item a{
     text-decoration: none;
@@ -159,10 +160,11 @@ body{
 .default{
     padding-left: 8px;
     padding-right: 8px;
-    padding-top:5px;
+    padding-top: 5px;
     padding-bottom: 5px;
     margin: 0;
-    border: 0;
+    /* border: 1px solid lightgray; */
+    /* text-align: center; */
 }
 .blockButton{
     width:98%;
@@ -177,7 +179,7 @@ hr{
     text-transform: uppercase;
 }
 .lineheight{
-    line-height:1.75;
+    /* line-height:1.75; */
 }
 .taskheight{
     line-height:1.75;
@@ -226,8 +228,8 @@ a{
     padding-top: 14px;
 }
 .item-divider label{
-    font-size: 13px;
-    color:#000000;  
+    font-size: 14px;
+    color: #868181;  
 }
 .item-content{
     /* font-size:13px; */
@@ -279,7 +281,7 @@ optLeft{
 .beLabel{
     font-size: 14px;
     color: #897E7E;
-    padding: 0px 0px 10px 40px;
+    padding: 0px 0px 5px 40px;
 }
 .beDown5{
      margin-top: 5px;
@@ -336,8 +338,14 @@ select {
 div .list .item{
     border-bottom: 1px solid #f5f5f5;
 }
+
+label.todayCheck.left.taskheight.item.item-checkbox.ng-valid {}
+
+label.todayCheck.left.taskheight.item.item-checkbox.ng-valid {}
+
+label.todayCheck.left.taskheight.item.item-checkbox.ng-valid {}
 div .list .item:last-child{
-    border-bottom:0px;
+    /* border-bottom:0px; */
 }
 .todo-tag{
     margin-left: 32.5px;
@@ -400,8 +408,9 @@ li
     float:left;
     margin:0;
     padding:0;
-/*    background: red;*/
-    border-bottom: 1px solid #000000;
+
+    /* background: red; */
+    border-bottom: 1px solid #D5D0D0;
     margin-right: 20px;
 }
 

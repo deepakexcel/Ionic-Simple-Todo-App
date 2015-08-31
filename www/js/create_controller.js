@@ -1,5 +1,6 @@
 angular.module('create.controller', ["angular-datepicker"])
-        .controller('CreateTodoCtrl', function ($cordovaNetwork, $filter, $stateParams, $ionicPopup, $cordovaDatePicker, Alertuser, $rootScope, $scope, $state, $q, $localStorage, ConnectParse) {
+
+        .controller('CreateTodoCtrl', function ($cordovaNetwork, $filter, $ionicHistory, $stateParams, $ionicPopup, $cordovaDatePicker, Alertuser, $rootScope, $scope, $state, $q, $localStorage, ConnectParse) {
 
 //            var item_title = $stateParams.a;
 //            var item_date = $stateParams.b;
@@ -18,6 +19,8 @@ angular.module('create.controller', ["angular-datepicker"])
 //$scope.saveee=function(){
 //    alert( $scope.model.title);
 //};
+
+
             $scope.datePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
@@ -114,6 +117,9 @@ angular.module('create.controller', ["angular-datepicker"])
             };
 
             $scope.gotoTask = function () {
+                $ionicHistory.nextViewOptions({
+                    disableBack: true
+                });
                 $state.go("app.addTodo");
             }
 
@@ -530,7 +536,17 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.reminderTime = {};
             $scope.reminderTime.isTimeDisplaying = false;
             $scope.reminderTime.isDateDisplaying = false;
+            
+            //Method for keyboard press save
+            $scope.go = function (event) {
+//                console.log(event);
+                var key = event.keyCode;
+//                console.log(key);
+                if (key == 13) {
+                    $scope.addTodo();
+                }
 
+            };
 
             $scope.addTodo = function () {
 
@@ -690,7 +706,11 @@ angular.module('create.controller', ["angular-datepicker"])
                                             console.log(error);
                                         }
                                 );
+//                                alert("GO 1");
                                 $state.go('app.addTodo');
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
+                                });
                             },
                             function (error) {
                                 console.log(error);
@@ -774,7 +794,11 @@ angular.module('create.controller', ["angular-datepicker"])
                                 console.log(storedTodoTasks.length);
                                 storedTodoTasks.push(todoObj);
                                 $localStorage['todoTasks'] = storedTodoTasks;
+//                                alert("go 2")
                                 $state.go('app.addTodo');
+                                $ionicHistory.nextViewOptions({
+                                    disableBack: true
+                                });
                                 //set myToDoObject variable in cloud with values calling parse service
                                 var setToDoList = $q.when(ConnectParse.save(todoObj));
                                 setToDoList.then(

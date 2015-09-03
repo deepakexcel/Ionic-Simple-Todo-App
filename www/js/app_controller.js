@@ -1,10 +1,8 @@
 angular.module('app.controller', [])
 
         .controller('AppCtrl', function ($scope, $ionicHistory, Alertuser, $timeout, $ionicPlatform, $cordovaNetwork, ConnectParse, $q, $state, $rootScope, $localStorage, $ionicLoading) {
-           
-          
-           
-                    $rootScope.mode = {
+
+            $rootScope.mode = {
                 searchbx: ''
             }
             var countBack = 0;
@@ -19,8 +17,6 @@ angular.module('app.controller', [])
                     } else {
                         countBack++;
                     }
-
-
                     if (countBack == 1) {
                         Alertuser.alert("press back again to exit");
                         $timeout(function () {
@@ -35,8 +31,7 @@ angular.module('app.controller', [])
 
                 }
                 else if ($state.$current.name == "login") {
-//                     countBack++;
-//                    
+//                     countBack++;//                    
                     if (countBack == 1) {
                         Alertuser.alert("press back again to exit");
                         $timeout(function () {
@@ -56,38 +51,38 @@ angular.module('app.controller', [])
 
 
             $scope.$on('$ionicView.enter', function () {
-                 if(!$localStorage['Initializer']){
-               $scope.profileList = true;
-           }
+                if (!$localStorage['Initializer']) {
+                    $scope.profileList = true;
+                }
 
                 if (window.cordova) {
-                    if($localStorage['Initializer']){
-                    if ($localStorage['Initializer'].length > 18) {
-                        $scope.loggedUser = $localStorage["loggedUsername"];
-                        if ($localStorage["google_user"]) {
-                            $scope.userprofile = $localStorage["google_user"].profile;
-                            $scope.emailid = $localStorage["google_user"].email;
-                        }
-                    } else {
-                        $scope.loggedUser = $localStorage["loggedUsername"];
-                        $scope.userprofile = "images/facebookIcon.png";
-                    }
-                }
-                } else {
-                     if($localStorage['Initializer']){
-                    if ($localStorage['Initializer'].length > 18) {
-                        $scope.loggedUser = $localStorage["loggedUsername"];
-                        if ($localStorage["google_user"]) {
-                            $scope.userprofile = $localStorage["google_user"].profile;
-                            $scope.emailid = $localStorage["google_user"].email;
+                    if ($localStorage['Initializer']) {
+                        if ($localStorage['Initializer'].length > 18) {
+                            $scope.loggedUser = $localStorage["loggedUsername"];
+                            if ($localStorage["google_user"]) {
+                                $scope.userprofile = $localStorage["google_user"].profile;
+                                $scope.emailid = $localStorage["google_user"].email;
+                            }
                         } else {
-                            $scope.userprofile = "images/google.png"
+                            $scope.loggedUser = $localStorage["loggedUsername"];
+                            $scope.userprofile = "images/facebookIcon.png";
                         }
-                    } else {
-                        $scope.loggedUser = $localStorage["loggedUsername"];
-                        $scope.userprofile = "images/facebookIcon.png"
                     }
-                }
+                } else {
+                    if ($localStorage['Initializer']) {
+                        if ($localStorage['Initializer'].length > 18) {
+                            $scope.loggedUser = $localStorage["loggedUsername"];
+                            if ($localStorage["google_user"]) {
+                                $scope.userprofile = $localStorage["google_user"].profile;
+                                $scope.emailid = $localStorage["google_user"].email;
+                            } else {
+                                $scope.userprofile = "images/google.png"
+                            }
+                        } else {
+                            $scope.loggedUser = $localStorage["loggedUsername"];
+                            $scope.userprofile = "images/facebookIcon.png"
+                        }
+                    }
                 }
 
                 if ($localStorage["Initializer"]) {

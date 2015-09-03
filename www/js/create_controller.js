@@ -2,25 +2,6 @@ angular.module('create.controller', ["angular-datepicker"])
 
         .controller('CreateTodoCtrl', function ($cordovaNetwork, $filter, $ionicHistory, $stateParams, $ionicPopup, $cordovaDatePicker, Alertuser, $rootScope, $scope, $state, $q, $localStorage, ConnectParse) {
 
-//            var item_title = $stateParams.a;
-//            var item_date = $stateParams.b;
-//            var item_time = $stateParams.c;
-//            
-//            console.log(item_date);
-//            console.log(item_time);
-////            console.log(item_dt);
-////            console.log(item_tm);
-//            $scope.model={};
-//            console.log($stateParams.a);
-//           
-////         $scope.model.title=item_title;
-////          console.log($scope.model.title);
-//         
-//$scope.saveee=function(){
-//    alert( $scope.model.title);
-//};
-
-
             $scope.datePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
@@ -167,9 +148,9 @@ angular.module('create.controller', ["angular-datepicker"])
                 }
             };
 
-            if (window.cordova && !$cordovaNetwork.isOnline()) {
-                $state.go('offline');
-            }
+//            if (window.cordova && !$cordovaNetwork.isOnline()) {
+//                $state.go('offline');
+//            }
 //            $scope.defaultTime = function () {
 //                console.log("time adjusted");
 //                var d = new Date();
@@ -215,15 +196,7 @@ angular.module('create.controller', ["angular-datepicker"])
 //
 //            };
             $scope.$on('$ionicView.enter', function () {
-//                $scope.model.title=item_title;
-////                $scope.mydate.title=item_date;
-////                $scope.mytime.title=item_time;
-//                console.log($scope.model.title);
-//                if (!$localStorage["Initializer"]) {
-//                    $state.go("app.addTodo");
-//                }
-                //$scope.todoAlarm = $scope.mydate;
-//                $scope.defaultTime();
+
                 $scope.curTime = new Date().getTime();
                 //alert($scope.todoAlarm.getDate() + "" + $scope.alarmTime.getHours());
                 var tags = [];
@@ -379,7 +352,6 @@ angular.module('create.controller', ["angular-datepicker"])
 //                e.stopPropagation();
                 //alert(selection);
                 console.log(selection);
-
                 console.log($scope.mydate.title);
                 //adjust time
                 var d = new Date();
@@ -401,7 +373,6 @@ angular.module('create.controller', ["angular-datepicker"])
                 if (selection === "Select a date..") {
 //                    $scope.model.date = "";
                     $scope.pickDate1();
-
                 }
 
             };
@@ -415,11 +386,8 @@ angular.module('create.controller', ["angular-datepicker"])
                 if ($scope.reminderTime.isDateDisplaying == true) {
                     $scope.reminderTime.isDateDisplaying = false;
                 }
-
                 $scope.tmp = {};
                 $scope.tmp.newDate = $scope.model.date;
-
-
                 var date_options = $ionicPopup.show({
                     template: "<datetimepicker ng-model=" + "tmp.newDate" + "   data-datetimepicker-config=" + "{minView:'day'}" + "></datetimepicker>",
                     title: "Date",
@@ -444,17 +412,12 @@ angular.module('create.controller', ["angular-datepicker"])
                         }
                     ]
                 });
-
                 date_options.then(function (res) {
                     console.log("Response");
                     console.log(res);
 //                    $scope.todoAlarm = res.getTime();
                 });
-
             };
-
-
-
 
             $scope.pickTime1 = function () {
                 $scope.aaa = false;
@@ -485,10 +448,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                 $scope.mytime.title = time;
                                 console.log(time);
                                 $scope.alarmTime = $scope.tmp1.newDate.getTime();
-//                                console.log("time");
-//                                console.log("TimePopup");
-//                                console.log($scope.alarmTime);
-//                                console.log(new Date($scope.alarmTime));
+
                             }
                         }
                     ]
@@ -524,14 +484,9 @@ angular.module('create.controller', ["angular-datepicker"])
                     d.setDate(d.getDate() + 1);
                     $scope.alarmTime = d.getTime();
 //                    $scope.model.time = "Night";
-
                 }
-
                 $scope.mytime.title = selection;
-
-
                 if (selection === "Select a time..") {
-
                     $scope.model.time = '';
                     $scope.pickTime1();
                 }
@@ -540,41 +495,31 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.reminderTime = {};
             $scope.reminderTime.isTimeDisplaying = false;
             $scope.reminderTime.isDateDisplaying = false;
-
-            //Method for keyboard press save
+           
             $scope.setHightBlur = function () {
                 if ($scope.mytask.title.length <= 1) {
                     $scope.high = "30px";
                 }
             }
-
             $scope.setHight = function () {
-
                 $scope.high = "50px";
-
             }
-
+             //Method for keyboard press save
             var cnt = 0;
             $scope.high = "30px";
             $scope.go = function (event) {
-//                $scope.high = "60px";
-//                console.log($scope.mytask.title.length);
-if($scope.mytask.title){
-                if($scope.mytask.title.length > 45){
-                    $scope.high = "70px";
-                 }else{
-                     $scope.high = "50px";
-                 }
-             }
+                if ($scope.mytask.title) {
+                    if ($scope.mytask.title.length > 45) {
+                        $scope.high = "70px";
+                    } else {
+                        $scope.high = "50px";
+                    }
+                }
                 var key = event.keyCode;
-
-
-
                 console.log(key);
                 if (key == 13) {
                     $scope.addTodo();
                 }
-
             };
 
             $scope.addTodo = function () {
@@ -602,156 +547,148 @@ if($scope.mytask.title){
                     cancelButtonLabel: 'Default',
                     cancelButtonColor: '#000000'
                 };
-                if($localStorage["Initializer"]){
-                if ($rootScope.ifdeviceReady && window.cordova) {
-                    console.log("ready");
-                    console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
-                    //$scope.todoAlarm = date.getTime();
-                    //console.log($scope.todoAlarm);
-                    var newPos;
-                    
-                    if ($localStorage["Initializer"].length > 18) {
-                        var checkTodoList = $q.when(ConnectParse.checkPosition(String($localStorage["Initializer"])));
-                    } else {
-                        var checkTodoList = $q.when(ConnectParse.checkPosition(parseInt($localStorage["Initializer"])));
-                    }
-                
-                    console.log(checkTodoList);
-                    checkTodoList.then(
-                            function (result) {
-                                console.log("checkTodoListtttttt");
-                                if (result.length > 0) {
-                                    newPos = result[0].get("position") + 1;
-                                }
-                                else {
-                                    newPos = 0;
-                                }
+                if ($localStorage["Initializer"] || !window.cordova) {
+                    if ($rootScope.ifdeviceReady && window.cordova) {
+                        console.log("ready");
+                        console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+                        //$scope.todoAlarm = date.getTime();
+                        //console.log($scope.todoAlarm);
+                        var newPos;
 
-                                var todoObj = {};
-                                //poopulate todo item
+                        if ($localStorage["Initializer"].length > 18) {
+                            var checkTodoList = $q.when(ConnectParse.checkPosition(String($localStorage["Initializer"])));
+                        } else {
+                            var checkTodoList = $q.when(ConnectParse.checkPosition(parseInt($localStorage["Initializer"])));
+                        }
 
-                                todoObj.title = val;
-                                if ($scope.todoAlarm) {
-                                    todoObj.time = parseInt($scope.todoAlarm);
-                                    console.log(new Date($scope.todoAlarm).getDate());
-                                    console.log(new Date(todoObj.time).getDate());
-                                }
-                                if ($scope.alarmTime) {
-                                    todoObj.alarmTime = $scope.alarmTime;
-                                    console.log(new Date($scope.alarmTime).getHours());
-                                    console.log(new Date(todoObj.alarmTime).getHours());
-                                }
-                                todoObj.parseStatus = true;
-                                todoObj.done = false;
-                                if ($localStorage["Initializer"].length > 18) {
-                                    todoObj.userID = String($localStorage["Initializer"]);
-                                } else {
-                                    todoObj.userID = parseInt($localStorage["Initializer"]);
-                                }
-                                todoObj.completed = todostatus[todoObj.done];
-                                todoObj.position = newPos;
-                                //tags of user
-                                var tempTags = [];
-                                var selectedTags = "";
-                                for (var i = 0; i < $scope.userPreTags.length; i++) {
-                                    if ($scope.userPreTags[i].selected === true) {
-                                        tempTags.push($scope.userPreTags[i].title);
-                                    }
-                                }
-                                for (var i = 0; i < $scope.userTags.length; i++) {
-                                    if ($scope.userTags[i].selected === true) {
-                                        tempTags.push($scope.userTags[i].title);
-
-                                    }
-
-                                }
-
-                                console.log(val + "--" + tempTags);
-                                for (var i = 0; i < tempTags.length; i++) {
-
-                                    if (i === (tempTags.length - 1)) {
-                                        selectedTags += tempTags[i];
-
+                        console.log(checkTodoList);
+                        checkTodoList.then(
+                                function (result) {
+                                    console.log("checkTodoListtttttt");
+                                    if (result.length > 0) {
+                                        newPos = result[0].get("position") + 1;
                                     }
                                     else {
-                                        selectedTags += tempTags[i] + ",";
+                                        newPos = 0;
+                                    }
+
+                                    var todoObj = {};
+                                    //poopulate todo item
+
+                                    todoObj.title = val;
+                                    if ($scope.todoAlarm) {
+                                        todoObj.time = parseInt($scope.todoAlarm);
+                                        console.log(new Date($scope.todoAlarm).getDate());
+                                        console.log(new Date(todoObj.time).getDate());
+                                    }
+                                    if ($scope.alarmTime) {
+                                        todoObj.alarmTime = $scope.alarmTime;
+                                        console.log(new Date($scope.alarmTime).getHours());
+                                        console.log(new Date(todoObj.alarmTime).getHours());
+                                    }
+                                    todoObj.parseStatus = true;
+                                    todoObj.done = false;
+                                    if ($localStorage["Initializer"].length > 18) {
+                                        todoObj.userID = String($localStorage["Initializer"]);
+                                    } else {
+                                        todoObj.userID = parseInt($localStorage["Initializer"]);
+                                    }
+                                    todoObj.completed = todostatus[todoObj.done];
+                                    todoObj.position = newPos;
+                                    //tags of user
+                                    var tempTags = [];
+                                    var selectedTags = "";
+                                    for (var i = 0; i < $scope.userPreTags.length; i++) {
+                                        if ($scope.userPreTags[i].selected === true) {
+                                            tempTags.push($scope.userPreTags[i].title);
+                                        }
+                                    }
+                                    for (var i = 0; i < $scope.userTags.length; i++) {
+                                        if ($scope.userTags[i].selected === true) {
+                                            tempTags.push($scope.userTags[i].title);
+
+                                        }
 
                                     }
 
-                                }
-                                //end of fetching tag string
-                                console.log(selectedTags);
-                                //tag fetching closed
-                                if (selectedTags.length === 0 || selectedTags === " " || selectedTags === "") {
-                                    todoObj.todoTag = null;
-                                }
-                                else {
-                                    todoObj.todoTag = selectedTags;
-                                }
-                                //$scope.todoList.unshift(todoObj);
-                                console.log(todoObj);
-//                                Alertuser.saveAlert("Saved..");
-                                var storedTodoTasks = $localStorage['todoTasks'];
-                                storedTodoTasks.unshift(todoObj);
+                                    console.log(val + "--" + tempTags);
+                                    for (var i = 0; i < tempTags.length; i++) {
 
+                                        if (i === (tempTags.length - 1)) {
+                                            selectedTags += tempTags[i];
 
-                                console.log("dnkcvdnskvnkjj");
-                                console.log($localStorage["Initializer"].length);
-
-                                if ($localStorage["Initializer"].length > 18) {
-                                    var setToDoList = $q.when(ConnectParse.Gsave(todoObj));
-                                } else {
-                                    //set myToDoObject variable in cloud with values calling parse service
-                                    var setToDoList = $q.when(ConnectParse.save(todoObj));
-                                }
-                                setToDoList.then(
-                                        function (result) {
-                                            if (result) {
-                                                $scope.mytask.title = "";
-                                                console.log("Local Notification");
-                                                console.log(result);
-                                                if (result.time) {
-                                                    //schedule local notification fro saved todo
-                                                    console.log("Result Time hai")
-                                                    window.plugin.notification.local.schedule({
-                                                        id: String(result.time), // A unique id of the notification
-//                                                    date: new Date($scope.alarmTime), // This expects a date object
-                                                        text: result.title, // The message that is displayed
-                                                        title: "", // The title of the message
-                                                        at: new Date($scope.alarmTime),
-//                                                    every: 1
-//                                                      autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
-                                                    });
-                                                    console.log(new Date($scope.alarmTime));
-                                                    /*
-                                                     for (var i = 0; i < $scope.todoList.length; i++) {
-                                                     if ($scope.todoList[i].title === result.title) {
-                                                     $scope.todoList[i].parseStatus = false;
-                                                     
-                                                     //$scope.todoAlarm="";
-                                                     }
-                                                     }
-                                                     */
-                                                }
-                                            }
-                                        },
-                                        function (error) {
-                                            console.log(error);
                                         }
-                                );
+                                        else {
+                                            selectedTags += tempTags[i] + ",";
+
+                                        }
+
+                                    }
+                                    //end of fetching tag string
+                                    console.log(selectedTags);
+                                    //tag fetching closed
+                                    if (selectedTags.length === 0 || selectedTags === " " || selectedTags === "") {
+                                        todoObj.todoTag = null;
+                                    }
+                                    else {
+                                        todoObj.todoTag = selectedTags;
+                                    }
+                                    //$scope.todoList.unshift(todoObj);
+                                    console.log(todoObj);
+//                                Alertuser.saveAlert("Saved..");
+                                    var storedTodoTasks = $localStorage['todoTasks'];
+                                    storedTodoTasks.unshift(todoObj);
+
+
+                                    console.log("dnkcvdnskvnkjj");
+                                    console.log($localStorage["Initializer"].length);
+
+                                    if ($localStorage["Initializer"].length > 18) {
+                                        var setToDoList = $q.when(ConnectParse.Gsave(todoObj));
+                                    } else {
+                                        //set myToDoObject variable in cloud with values calling parse service
+                                        var setToDoList = $q.when(ConnectParse.save(todoObj));
+                                    }
+                                    setToDoList.then(
+                                            function (result) {
+                                                if (result) {
+                                                    $scope.mytask.title = "";
+                                                    console.log("Local Notification");
+                                                    console.log(result);
+                                                    if (result.time) {
+                                                        //schedule local notification fro saved todo
+                                                        console.log("Result Time hai")
+                                                        window.plugin.notification.local.schedule({
+                                                            id: String(result.time), // A unique id of the notification
+//                                                              date: new Date($scope.alarmTime), // This expects a date object
+                                                            text: result.title, // The message that is displayed
+                                                            title: "", // The title of the message
+                                                            at: new Date($scope.alarmTime),
+//                                                           every: 1
+//                                                          autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
+                                                        });
+                                                        console.log(new Date($scope.alarmTime));
+                                                       
+                                                    }
+                                                }
+                                            },
+                                            function (error) {
+                                                console.log(error);
+                                            }
+                                    );
 //                                alert("GO 1");
-                                $state.go('app.addTodo');
-                                $ionicHistory.nextViewOptions({
-                                    disableBack: true
-                                });
-                            },
-                            function (error) {
-                                console.log(error);
-                            }
-                    );
-        
-                    console.log("Y set" + $scope.todoAlarm);
-                }
+                                    $state.go('app.addTodo');
+                                    $ionicHistory.nextViewOptions({
+                                        disableBack: true
+                                    });
+                                },
+                                function (error) {
+                                    console.log(error);
+                                }
+                        );
+
+                        console.log("Y set" + $scope.todoAlarm);
+                    }
                 }
                 else {
                     var newPos;
@@ -840,55 +777,22 @@ if($scope.mytask.title){
                                         function (result) {
                                             if (result) {
                                                 console.log(result.title);
-                                                
+
                                                 console.log("Local Notification ");
                                                 console.log(result);
                                                 if (result.time) {
                                                     //schedule local notification fro saved todo
                                                     console.log("Result Time hai")
                                                     window.plugin.notification.local.schedule({
-                                                        id: String(result.time), // A unique id of the notification
-//                                                    date: new Date($scope.alarmTime), // This expects a date object
-                                                        text: result.title, // The message that is displayed
-                                                        title: "", // The title of the message
+                                                        id: String(result.time), 
+                                                        text: result.title, 
+                                                        title: "", 
                                                         at: new Date($scope.alarmTime),
-//                                                    every: 1
-//                                                      autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
+//                                                    
                                                     });
                                                     console.log(new Date($scope.alarmTime));
-                                                    /*
-                                                     for (var i = 0; i < $scope.todoList.length; i++) {
-                                                     if ($scope.todoList[i].title === result.title) {
-                                                     $scope.todoList[i].parseStatus = false;
-                                                     
-                                                     //$scope.todoAlarm="";
-                                                     }
-                                                     }
-                                                     */
+                                                    
                                                 }
-                                                
-                                                
-                                                
-                                                
-                                                //schedule local notification fro saved todo
-                                                /*
-                                                 window.plugin.notification.local.add({
-                                                 id: String(result.id), // A unique id of the notification
-                                                 //date: new Date($scope.todoAlarm), // This expects a date object
-                                                 message: result.title, // The message that is displayed
-                                                 title: "Reminder", // The title of the message
-                                                 autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
-                                                 });
-                                                 */
-                                                /*
-                                                 for (var i = 0; i < $scope.todoList.length; i++) {
-                                                 if ($scope.todoList[i].title === result.title) {
-                                                 $scope.todoList[i].parseStatus = false;
-                                                 
-                                                 //$scope.todoAlarm="";
-                                                 }
-                                                 }
-                                                 */
                                             }
                                         },
                                         function (error) {

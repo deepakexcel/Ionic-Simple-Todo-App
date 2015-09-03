@@ -17,8 +17,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
     var self = this;
 //            if($scope.isTodayVisible == true){}
 
-
-
     $scope.moredata = true;
     $scope.todoList = [];
     $scope.todoAlarm;
@@ -96,18 +94,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
             console.log($scope.todoList);
         }
     };
-    self.checkLocalEmpty = function () {
-//                if($localStorage['todoTasks']){
-        if ($localStorage['todoTasks'].length > 0) {
-            $scope.emptyshow = true;
-            $scope.navTitle = true;
-        } else {
-            $scope.emptyshow = false;
-            $scope.navTitle = false;
-            $scope.cmplt = true;
-        }
-//            }
-    };
+    
     $scope.$on('$ionicView.enter', function () {
 
         self.checkLocalEmpty();
@@ -208,11 +195,21 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
         self.checkLocalDone();
     }); // end of before view change
 
+    self.checkLocalEmpty = function () {
+//                if($localStorage['todoTasks']){
+        if ($localStorage['todoTasks'].length > 0) {
+            $scope.emptyshow = true;
+            $scope.navTitle = true;
+        } else {
+            $scope.emptyshow = false;
+            $scope.navTitle = false;
+            $scope.cmplt = true;
+        }
+//            }
+    };
 
     self.checkLocalDone = function () {
 //                if($localStorage["todoTasks"]){
-
-
         var count = 0;
         var localTasks = [];
         localTasks = $localStorage["todoTasks"];
@@ -502,11 +499,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                     else {
                         console.log("No records found");
                     }
-
-
-//                            $scope.refreshMe();
-//                            $ionicLoading.hide();
-//                            Alertuser.alert("record deleted");
                 },
                 function (error) {
                     $ionicLoading.hide();
@@ -752,11 +744,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
         });
         $state.go("app.createTodo");
     };
-//            var self = this;
-//    $scope.showNotification=function(){
-//        console.log("Show Notification");
-//        console.log($localStorage["todoTasks"]);
-//};
+
 
 });
 

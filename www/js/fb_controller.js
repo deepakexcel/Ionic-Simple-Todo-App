@@ -10,8 +10,7 @@ angular.module('fb.controller', [])
                 }
             });
             
-            $scope.withoutLogin = function(){
-                
+            $scope.withoutLogin = function(){                
                 $ionicLoading.show({
                     content: '<i class="icon ion-loading-c">',
                     animation: 'fade-in',
@@ -22,7 +21,7 @@ angular.module('fb.controller', [])
                 $timeout(function(){
                     $ionicLoading.hide();
                 $state.go("app.addTodo");
-            },2000);
+            },1000);
             };
 
             $scope.gLogin = function () {
@@ -38,10 +37,7 @@ angular.module('fb.controller', [])
                         secret: 'yz4pFJNNX-cqu3T3pJyHLlkw'
                     };
 
-//                 $ionicLoading.show({
-////                duration: 3000,
-//                    template: '<p class="spinner-energized"><ion-spinner icon="spiral"/></p>'
-//                });
+
                     var gLogSuccess = googleLogin.authorize(opt);
 
                     gLogSuccess.then(function (res) {

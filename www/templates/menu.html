@@ -8,7 +8,7 @@
             </ion-nav-back-button>
             <!--</ion-nav-bar>-->
             <ion-nav-buttons side="left">
-                <button style="padding-top:12px;color: #ffffff;" class="button button-icon button-clear ion-navicon " menu-toggle="left">
+                <button style="padding-top:5px;color: #ffffff;" class="button button-icon button-clear ion-navicon " menu-toggle="left">
                 </button>
                 <!--            <label class="defaultText pad-top14">
                                 <span side="left" class="bigLabel">
@@ -21,7 +21,7 @@
             </ion-nav-buttons>
             <ion-nav-buttons side="secondary">
             </ion-nav-buttons>
-           
+
         </ion-nav-bar>
 
         <ion-nav-view name="menuContent">
@@ -32,7 +32,7 @@
 
     <ion-side-menu  side="left" expose-aside-when="large" class="">
         <ion-content class="">
-            <ion-list>
+            <ion-list ng-hide="profileList">
                 <ion-item class="logout" menu-close nav-clear item-divider >
                     <div class="userMain"> 
                         <img class="userIcon1" ng-src="{{userprofile}}">
@@ -42,28 +42,35 @@
                         </div>
                     </div>
 
-                    
+
 
                 </ion-item>
             </ion-list>
+
             <ion-list class="">
-                <ion-item nav-clear menu-close href="#/app/add_todo" class="menucntnt cntnttsk">
-                    <div class="menuOpt">
+                <!--<button  class="button button-clear menucntnt cntnttsk menuBtn"ng-disabled="abc">-->
+                <ion-item nav-clear menu-close href="#/app/add_todo" class="menucntnt cntnttsk" >
+
+                    <div class="menuOpt" >
                         <i class="menuIcon icon ion-android-clipboard "></i> 
                         <span class="menuTxt">Tasks</span>
                     </div>
+
                 </ion-item>
+                <!--</button>-->
 
 
-                <ion-item nav-clear menu-close href="" class="menucntnt">
+                <ion-item nav-clear menu-close href="" class="menucntnt" ng-show="ifLoogedIn" on-tap="logout(); aaa=true">
                     <!--<i class="icon ion-social-buffer col-offset-20"></i> Upcoming days-->
-                    <div class="menuOpt" ng-show="ifLoogedIn" on-tap="logout()">
+                    <div class="menuOpt" >
                         <i class="menuIcon icon ion-log-out  " ></i>
                         <span class="menuTxt">Logout</span> 
 
                     </div>
+                </ion-item>
+                <ion-item nav-clear menu-close href="" class="menucntnt"  ng-hide="ifLoogedIn" on-tap="login()">
 
-                    <div class="menuOpt" ng-hide="ifLoogedIn" on-tap="login()">
+                    <div class="menuOpt">
                         <i class=" menuIcon icon ion-log-in " ></i>
                         <span class="menuTxt">Login</span> 
 
@@ -71,19 +78,24 @@
                 </ion-item>
 
             </ion-list>
-            <ion-list class="cmptlist">
-                <ion-item  nav-clear menu-close  href="#/app/completed" class="menucntnt1">
-                    <div class="menuOpt">
+
+            <ion-list class="cmptlist" disabled>
+                <!--<button  class="button button-clear menucntnt cntnttsk menuBtn1"ng-disabled="abc">-->
+                <ion-item  nav-clear menu-close  href="#/app/completed" class="menucntnt1" >
+                    <div class="menuOpt" >
                         <i class="menuIcon icon ion-android-checkbox-outline  " ></i> 
                         <span class="menuTxt">Completed</span>
                     </div>
                 </ion-item>
+                <!--</button>-->
+                <!--<button  class="button button-clear menucntnt cntnttsk menuBtn1"ng-disabled="abc">-->
                 <ion-item  nav-clear menu-close href class="menucntnt cntnttsk"  on-tap="deleteRecord();">
                     <div class="menuOpt">
                         <i class="menuIcon icon ion-android-delete " ></i> 
                         <span class="menuTxt">Trash</span>
                     </div>
                 </ion-item>
+                <!--</button>-->
 
             </ion-list>
 

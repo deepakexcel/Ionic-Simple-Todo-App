@@ -315,8 +315,9 @@
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
+                  'past':hourMoment.isBefore(new Date()),
                   'active': hourMoment.format('YYYY-MM-DD H') === activeFormat,
-                  'past':hourMoment.isBefore(new Date())
+                  
                 };
                     console.log(dateValue.past);
                 result.dates.push(new DateObject(dateValue));
@@ -373,7 +374,7 @@
 
               scope.onSetTime({newDate: newDate, oldDate: oldDate});
 
-              return dataFactory[configuration.startView](unixDate);
+              return dataFactory[configuration.minView](unixDate);
             }
           };
 

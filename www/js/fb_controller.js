@@ -1,5 +1,5 @@
 angular.module('fb.controller', [])
-        .controller('FbCtrl', function ($cordovaNetwork, timeStorage, $scope, $ionicLoading, $state, $rootScope, googleLogin, $q, ConnectParse, Alertuser, $localStorage) {
+        .controller('FbCtrl', function ($cordovaNetwork, timeStorage, $scope, $timeout, $ionicLoading, $state, $rootScope, googleLogin, $q, ConnectParse, Alertuser, $localStorage) {
             var self = this;
             /*if (!$rootScope.ifdeviceReady) {
              alert("Please re launch the application");
@@ -9,6 +9,21 @@ angular.module('fb.controller', [])
                     $state.go("app.addTodo");
                 }
             });
+            
+            $scope.withoutLogin = function(){
+                
+                $ionicLoading.show({
+                    content: '<i class="icon ion-loading-c">',
+                    animation: 'fade-in',
+                    showBackdrop: true,
+                    maxWidth: 100,
+                    showDelay: 0
+                });
+                $timeout(function(){
+                    $ionicLoading.hide();
+                $state.go("app.addTodo");
+            },2000);
+            };
 
             $scope.gLogin = function () {
 
@@ -30,6 +45,13 @@ angular.module('fb.controller', [])
                     var gLogSuccess = googleLogin.authorize(opt);
 
                     gLogSuccess.then(function (res) {
+                        $ionicLoading.show({
+                    content: '<i class="icon ion-loading-c">',
+                    animation: 'fade-in',
+                    showBackdrop: true,
+                    maxWidth: 100,
+                    showDelay: 0
+                });
                         console.log("gooooooooooooooogle")
                         console.log(res);
                         console.log(res.email);
@@ -73,7 +95,7 @@ angular.module('fb.controller', [])
                                     console.log();
 //                                datafetch.then(function (result) {
                                     $ionicLoading.hide();
-                                    Alertuser.alert("Logging in..");
+//                                    Alertuser.alert("Logging in..");
                                     $state.go("app.addTodo");
 //                                })
                                 },

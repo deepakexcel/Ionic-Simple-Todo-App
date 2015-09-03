@@ -1,3 +1,23 @@
+textarea::-webkit-input-placeholder{
+    color:#8dbee0;
+}
+textarea:-moz-placeholder {
+    color:#8dbee0;
+}
+textarea:-moz-placeholder { /* Firefox 18- */
+   color: #8dbee0;  
+}
+
+textarea::-moz-placeholder {  /* Firefox 19+ */
+   color: #8dbee0;  
+}
+
+textarea:-ms-input-placeholder {  
+   color: #8dbee0;  
+}
+
+
+
 input::-webkit-input-placeholder{
     color:#8dbee0;
 }
@@ -97,14 +117,14 @@ body{
     border: 1px solid #bc3925;
 }
 .mybar{
-    height: 70px;
+    height: 55px;
     border: none!important;
     text-align: center;
     border: 1px solid #2a8dd1;
     background-color: #2a8dd1!important;
 }
 .has-my-bar{
-    top: 69px;
+    top: 55px;
 }
 .myloginbar{
     height:30%;
@@ -409,7 +429,6 @@ li
     margin:0;
     padding:0;
 
-    /* background: red; */
     border-bottom: 1px solid #D5D0D0;
     margin-right: 20px;
 }

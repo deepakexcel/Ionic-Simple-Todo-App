@@ -1,13 +1,19 @@
 <ion-view cache-view="false">
 
     <ion-nav-buttons side="left">
-        <button style="padding-top:12px;color: #ffffff;" class="button button-icon button-clear ion-navicon " menu-toggle="left">
+        <button style="padding-top:5px;color: #ffffff;" class="button button-icon button-clear ion-navicon " menu-toggle="left">
         </button>
         <label class="crthead defaultText">
             <span side="left" class="bigLabel">
                 <span class="titlSpancmp" style="font-size: 18px; width:100%">Completed</span>
             </span>
         </label>
+    </ion-nav-buttons>
+    <ion-nav-buttons side="right">
+        
+        <button style="padding-top:5px; color: #ffffff;" class="button button-clear "  on-tap="deleteRecord();">
+            <i class="icon ion-android-delete hedIcn"></i> 
+        </button>
     </ion-nav-buttons>
 
     <!--header bar of add to do-->

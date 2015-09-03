@@ -17,10 +17,10 @@
   https://twitter.com/benjsperry  https://twitter.com/ionicframework
   MIT License: https://github.com/driftyco/ionicons
 
-  Android-style icons originally built by GoogleÃ¢â‚¬â„¢s
+  Android-style icons originally built by GoogleÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s
   Material Design Icons: https://github.com/google/material-design-icons
   used under CC BY http://creativecommons.org/licenses/by/4.0/
-  Modified icons to fit ioniconÃ¢â‚¬â„¢s grid from original.
+  Modified icons to fit ioniconÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢s grid from original.
 */
 @font-face {
   font-family: "Ionicons";
@@ -2257,7 +2257,7 @@
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, i, u, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, fieldset, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
   margin: 0;
   padding: 0;
-  border: 0;
+  /* border: 0; */
   vertical-align: baseline;
   font: inherit;
   font-size: 100%; }
@@ -3041,7 +3041,7 @@ a.subdued {
   box-sizing: border-box;
   padding: 5px;
   width: 100%;
-  height: 44px;
+  height: 50px;
   border-width: 0;
   border-style: solid;
   border-top: 1px solid transparent;
@@ -3162,7 +3162,7 @@ a.subdued {
     overflow: hidden;
     /* margin: 10px 10% 0px 25%; */
     min-width: 30px;
-    height: 43px;
+    height: 44px;
     text-align: center;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -3193,7 +3193,7 @@ a.subdued {
       font-size: 17px; }
       .bar .button.button-icon .icon:before, .bar .button.button-icon:before, .bar .button.button-icon.icon-left:before, .bar .button.button-icon.icon-right:before {
         vertical-align: top;
-        font-size: 32px;
+        font-size: 28px;
         line-height: 32px; }
     .bar .button.button-clear {
       padding-right: 2px;
@@ -3201,7 +3201,7 @@ a.subdued {
       font-weight: 300;
       font-size: 17px; }
       .bar .button.button-clear .icon:before, .bar .button.button-clear.icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before {
-        font-size: 32px;
+        font-size: 28px;
         line-height: 32px; }
     .bar .button.back-button {
       display: block;
@@ -5838,17 +5838,18 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
   display: block;
   padding-top: 2px;
   padding-left: 0;
-  height: 34px;
+  /* height: 34px; */
   color: #111;
   vertical-align: middle;
   font-size: 14px;
-  line-height: 16px; }
+  /* line-height: 16px; */ }
 
 .platform-ios input[type="datetime-local"], .platform-ios input[type="date"], .platform-ios input[type="month"], .platform-ios input[type="time"], .platform-ios input[type="week"], .platform-android input[type="datetime-local"], .platform-android input[type="date"], .platform-android input[type="month"], .platform-android input[type="time"], .platform-android input[type="week"] {
   padding-top: 8px; }
 
 .item-input input, .item-input textarea {
-  width: 100%; }
+  width: 100%; 
+}
 
 textarea {
   padding-left: 0; }
@@ -5861,7 +5862,7 @@ textarea {
     text-indent: -3px; }
 
 textarea {
-  height: auto; }
+  /* height: auto; */ }
 
 textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"] {
   border: 0; }
@@ -6580,16 +6581,17 @@ progress {
     top: -6px;
     right: -6px;
     bottom: -6px;
-    left: -6px;
+    /* left: -6px; */
     content: ' '; }
   .button .icon {
     vertical-align: top;
-    pointer-events: none; }
+    pointer-events: none; 
+}
   .button .icon:before, .button.icon:before, .button.icon-left:before, .button.icon-right:before {
     display: inline-block;
     padding: 0 0 1px 0;
     vertical-align: inherit;
-    font-size: 24px;
+    font-size: 32px;
     line-height: 41px;
     pointer-events: none; }
   .button.icon-left:before {
@@ -6900,10 +6902,11 @@ progress {
     border-color: transparent;
     background: none;
     box-shadow: none;
-    color: #b2b2b2; }
+    /* color: #b2b2b2; */ }
   .button-clear.button-icon {
     border-color: transparent;
-    background: none; }
+    background: none; 
+}
   .button-clear.active, .button-clear.activated {
     opacity: 0.3; }
 

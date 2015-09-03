@@ -8,46 +8,55 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                     $rootScope.ifdeviceReady = true;
                     if (window.cordova && window.cordova.plugins.Keyboard) {
                         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-                        cordova.plugins.Keyboard.disableScroll(true);
+
                     }
                     if (window.StatusBar) {
                         // org.apache.cordova.statusbar required
                         StatusBar.styleDefault();
                     }
-                    
+                    if ($localStorage['Initializer'] || $localStorage['todoTasks']) {
+                        $state.go('app.addTodo')
+                    } else {
+                        $state.go('login');
+                    }
+
 
                 }
-                $interval(function() {
+                $interval(function () {
                     if ($localStorage["todoTasks"]) {
                         var items = $localStorage["todoTasks"];
                         console.log(items);
                         for (var i = 0; i < items.length; i++) {
-                            var itemTime=new Date(items[i].alarmTime).toTimeString();
-                            var itemDate=new Date(items[i].time).toDateString();
+                            var itemTime = new Date(items[i].alarmTime).toTimeString();
+                            var itemDate = new Date(items[i].time).toDateString();
                             console.log("Interval notification" + ":-" + i);
                             console.log(itemTime);
                             console.log(itemDate);
                             console.log(items[i]);
                             console.log(new Date(items[i].alarmTime))
-                                if (new Date(items[i].alarmTime) === new Date()) {
-                            window.plugin.notification.local.schedule({
-                                id: i, // A unique id of the notification
+                            console.log(new Date());
+//                            if (new Date(items[i].alarmTime) == new Date()) {
+                            if ((itemTime == new Date().toTimeString()) && (itemDate == new Date().toDateString())) {
+                                window.plugin.notification.local.schedule({
+                                    id: i, // A unique id of the notification
 //                                                    date: new Date($scope.alarmTime), // This expects a date object
-                                text: "Notification  :- "+items[i].title, // The message that is displayed
-                                title: "Reminder", // The title of the message
+                                    text: items[i].title, // The message that is displayed
+                                    title: "", // The title of the message
 //                            at: new Date($scope.alarmTime),
 //                                                    every: 1
 //                                                      autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
-                            });
-                                }
-                                console.log("console");
+                                });
+                            }
+                            console.log("console");
                         }
                     }
                     console.log("timeout 1");
                 }, 30000);
-                
+
+
+
             });
-           
+
         })
 
         .config(function ($stateProvider, $urlRouterProvider) {
@@ -97,7 +106,7 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                             }
                         }
                     })
-                    
+
                     .state('app.editTodo', {
                         url: "/editTodo/:a/:b/:c/:d/",
                         cache: false,
@@ -150,5 +159,5 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                     });
             // if none of the above states are matched, use this as the fallback
             //$urlRouterProvider.otherwise('/app/add_todo');
-            $urlRouterProvider.otherwise('/login');
+//            $urlRouterProvider.otherwise('/login');
         });

@@ -7,7 +7,7 @@
             <!--<ion-nav-bar class="bgcolor mybar no-border">-->
 
             <ion-nav-buttons side="left">
-                <button style="padding-top:12px;color: #ffffff;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
+                <button style="padding-top:5px;color: #ffffff;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
                 </button>
                 <label class="crthead defaultText">
                     <span side="left" class="bigLabel">
@@ -20,7 +20,7 @@
             </ion-nav-buttons>
                 
             <ion-nav-buttons side="right">
-                <button style="padding-top:12px; padding-right: 15px; color: #ffffff; font-size: 14px;" class="button button-icon button-clear" on-tap="addTodo()">
+                <button style="padding-top:5px; padding-right: 15px; color: #ffffff; font-size: 14px;" class="button button-icon button-clear" on-tap="addTodo()">
                     SAVE
                 </button>
                 </ion-nav-buttons>
@@ -35,10 +35,11 @@
         <form>
         <ion-list class="crtList">
 
-            <ion-item class="items bgcolor no-border">
+            <ion-item class="items bgcolor no-border txtItem">
                 <label class="txtbx item-input item-floating-label">
                     <span class="input-label" style="color: 8dbee0; margin-bottom: 20px; font-size: 18px;">Task Name</span>
-                    <input type="text" placeholder="Task Name" id="txtbx" ng-model="mytask.title" ng-keydown="go($event)">
+                    <textarea placeholder="Task Name" id="txtbx" ng-model="mytask.title" ng-keydown="go($event)" cols="10" rows="2" maxlength="100" style="height: {{high}}" on-tap="setHight()" ng-blur="setHightBlur()" ></textarea>
+                    <div class="lineDiv"></div>
                 </label>
                 
             </ion-item>
@@ -59,8 +60,8 @@
                         </button>
                     </label>
                     <nav ng-show="showReminder" class="" close-submenu>
-                        <button class="button button-icon icon-left placeholder-icon ion-clock" 
-                                style="color:#888a89;position: absolute;padding-right:  20px;">
+                        <button class="button button-icon icon-left placeholder-icon ion-android-notifications" 
+                                style="color:#888a89;position: absolute;padding-right:  20px; padding-top: 10px;">
                         </button>
                         <ul style="margin-left: 40px;" on-tap="blank();">
                             <li class="current-menu-item"><a id="dateBtn">{{mydate.title}}</a>
@@ -96,11 +97,11 @@
         </ion-list>
         </form>
     </ion-content>
-<ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
+<!--<ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">
         <h1 class="title">Title</h1>
         <div class="buttons" ng-click="addTodo()">
             <button class="create-btn button addcolor1 ion-plus-round " style="font-size:20px ; "> 
             </button>
         </div>
-    </ion-footer-bar>
+    </ion-footer-bar>-->
 </ion-view>

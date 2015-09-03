@@ -67,6 +67,7 @@
     padding-bottom: 0px;
     padding-top: 4px;
     font-size: 15px;
+    width: 75%;   white-space: normal;
 }
 
 .taskToday1{
@@ -93,7 +94,7 @@
 }
 
 .menucntnt{
-    padding: 0px 0 0 0px;
+    padding: 0 0 0 0px;
        
     color: rgb(171, 166, 166);
     height: 50px;
@@ -112,21 +113,21 @@
 .menuTxt{
     font-size: 14px;
     font-family: sans-serif;
-    margin: 0 0 0 22px;
+    margin: 0px 117px 0 22px;
     font-weight: bold;
 }
 
 .menuTxtt{
     font-size: 14px;
     font-family: sans-serif;
-    /*margin: -70px 0 0 22px;*/
+    margin: 0 0 0 0;
     font-weight: bold;
 }
 
 .menuTxttt{
     font-size: 14px;
     font-family: sans-serif;
-    /*margin: -70px 0 0 22px;*/
+    /* margin: -70px 0 0 22px; */
     color: lightgray;
 }
 
@@ -147,11 +148,11 @@
     width: 50px;
     border-radius: 50%;
     float: left;
-    margin-top: 0px;
+    margin-top: -3px;
 }
 
 .userMain{
-    padding: 0px 0 25px 15px;
+    padding: 0px 0 20px 15px;
     
     border-bottom: 1px solid rgba(207, 205, 205, 0.58);
     /* float: left; */
@@ -187,12 +188,12 @@
     margin: 0 0 0 25px;
     
     width: 80%;
-    padding-bottom: 30px;
+    padding-bottom: 35px;
 }
 
-/*.crtList{
-    border:none;
-}*/
+.crtList{
+    
+}
 
 .remind{
     padding: 15px;
@@ -202,22 +203,24 @@
 
 #txtbxx{
     color: whitesmoke;
-    border-bottom: 1.5px solid #aacae3;
+    /* border-bottom: 2px solid #aacae3; */
     background-color: #2a8dd1;
-    height: 30px;
+    /* height: 30px; */
     font-size: 18px;
+    width: 65%;
 }
 #txtbx{
     color: whitesmoke;
-    border-bottom: 1.5px solid #aacae3;
+    /* border-bottom: 1.5px solid #aacae3; */
     background-color: #2a8dd1;
-    height: 30px;
+    /* height: 30px; */
     font-size: 18px;
     text-decoration: none;
-    text-transform: none;
+    /* padding: 0 0 0 0; */
+    width: 60%;
 }
 .crthead{
-    padding: 17px 0 0 0;
+    padding: 12px 0 0 0;
     
     font-family: sans-serif;
     margin: 0 0 0 0;
@@ -227,11 +230,14 @@
     margin-left: 60px;
     
     margin-top: 5px;
-    padding-top: 8px;
+    padding-top: 7px;
 }
 
 .menuOpt{
-    padding: 0 0 0 10px;
+    padding: 10px 0 10px 20px;
+    margin: -10px 0 0px -15px;
+    /* background-color: red; */
+    width: 100%;
 }
 .cntnttsk{
     border-bottom: none!important;
@@ -285,11 +291,56 @@
 }
 
 .srchtxt{
-    width: 200%;
+    width: 110%;
     
     background-color: #2a8dd1;
     
     /* padding: 0 0 40px 0; */
-    margin: -10px 0 0 0;
-    height: 50px!important;
+    margin: -3px 0 0 0;
+    /* height: 40px!important; */
+    border-bottom: 2px solid #8dbee0!important;
+}
+
+.hedIcn{
+    
+}
+
+.lineDiv{
+    height: 1.5px;    
+    background-color: #aacae3;
+    position: relative;
+    margin: 0 0 0 0;
+}
+.txtItem{
+    height: 160px;
+    
+}
+
+textarea { 
+    overflow: hidden; 
+    resize: none;
+}
+
+.menuBtn{
+    width: 100%;
+    
+    margin: 2px 0 8px 0;
+}
+
+.menuBtn1{
+    width: 100%;
+    
+    margin: 2px 0 0px 0;
+}
+.skipanchor{
+    text-decoration: initial;
+    
+    color: white;
+    font-size: 20px;
+}
+
+.skipTxt{
+    
+    text-align: center;
+    padding: 5px 0 0 0;
 }

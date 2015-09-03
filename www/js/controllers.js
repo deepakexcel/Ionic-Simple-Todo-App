@@ -1,26 +1,19 @@
 var myApp = angular.module('starter.controllers', [])
-myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ionicHistory, $ionicNavBarDelegate, $window, $ionicLoading, $ionicPopup, $cordovaNetwork, $scope, $state, $rootScope, $q, ConnectParse, $localStorage) {
+myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $filter, $ionicHistory, $ionicNavBarDelegate, $window, $ionicLoading, $ionicPopup, $cordovaNetwork, $scope, $state, $rootScope, $q, ConnectParse, $localStorage) {
     $scope.isTodayVisible = true;
-//    $scope.isLaterVisible = true;
-//    $scope.isThisWeekVisible = true;
-//            $scope.isCompletedVisible = true;
+
     $scope.showToday = function () {
         $scope.isTodayVisible = !$scope.isTodayVisible;
     };
-//    $scope.showThisWeek = function () {
-//        $scope.isThisWeekVisible = !$scope.isThisWeekVisible;
-//    };
-//    $scope.showLater = function () {
-//        $scope.isLaterVisible = !$scope.isLaterVisible;
-//    };
+
     $scope.showCompleted = function () {
         $scope.isCompletedVisible = !$scope.isCompletedVisible;
     };
     $scope.showReorder = false;
     $rootScope.ifdeviceReady = true;
-    //if (window.cordova && !$cordovaNetwork.isOnline()) {
-    //    $state.go('offline');
-    //}
+    if (window.cordova && !$cordovaNetwork.isOnline()) {
+        $state.go('offline');
+    }
     var self = this;
 //            if($scope.isTodayVisible == true){}
 
@@ -81,27 +74,26 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
                 else {
                     mytodoobj.parseStatus = result[i].parseStatus;
                 }
+                if (!result[i].time && !result[i].alarmTime) {
+                    mytodoobj.icon = '';
+                } else {
+                    mytodoobj.icon = 'ion-ios-alarm-outline';
+                }
                 mytodoobj.title = result[i].title;
                 mytodoobj.done = result[i].done;
                 mytodoobj.position = result[i].position;
                 mytodoobj.completed = todostatus[mytodoobj.done];
                 mytodoobj.todoTag = [];
-                var tagString = "";
-//                if (result[i].todoTag) {
-//                    tagString = result[i].todoTag;
-//                    console.log(tagString);
-//                    var temptags = tagString.split(",");
-//                    for (var j = 0; j < temptags.length; j++) {
-//                        var tagObj = {};
-//                        tagObj.title = temptags[j];
-//                        tagObj.color = $scope.colorPicker(tagObj.title);
-//                        mytodoobj.todoTag.push(tagObj);
-//                    }
-//                }
+
+                    
                 mytodolist.unshift(mytodoobj);
+                console.log("Check UnShift");
+                    console.log(mytodoobj);
+                console.log(mytodolist);
             }
             $scope.todoList = mytodolist;
-            console.log($scope.todoList)
+             
+            console.log($scope.todoList);
         }
     };
     self.checkLocalEmpty = function () {
@@ -124,6 +116,11 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
 
 
     $scope.$on('$ionicView.beforeEnter', function () {
+        if (!$localStorage["Initializer"]) {
+            if (!$localStorage['todoTasks']) {
+                $localStorage['todoTasks'] = '';
+            }
+        }
 //                
         if ($localStorage["Initializer"] && !$localStorage['todoTasks']) {
             $ionicLoading.show({
@@ -146,6 +143,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
                         var mytodolist = [];
                         if (result.length > 0) {
                             for (var i = 0; i < result.length; i++) {
+
                                 console.log(result[i]);
                                 var mytodoobj = {};
                                 mytodoobj.time = result[i].get("time");
@@ -251,7 +249,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
     var i = 0;
     $scope.store = function (item, index) {
 
-
         itempos[i] = item.position;
         items[i] = item;
         console.log("Store" + itempos[i]);
@@ -332,12 +329,12 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
         }
         else {
             if (window.cordova) {
-                Alertuser.alert("Please Login to make changes..");
+//                Alertuser.alert("Please Login to make changes..");
                 if (item.done == true) {
-                    item.done = false;
+                    item.done = true;
                 }
                 else {
-                    item.done = true;
+                    item.done = false;
                 }
 
                 item.completed = todostatus[item.done];
@@ -351,12 +348,12 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
                 }
             }
             else {
-                alert("Please Login to make changes.." + item.done);
+//                alert("Please Login to make changes.." + item.done);
                 if (item.done == true) {
-                    item.done = false;
+                    item.done = true;
                 }
                 else {
-                    item.done = true;
+                    item.done = false;
                 }
 
                 item.completed = todostatus[item.done];
@@ -373,12 +370,17 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
         }
         console.log($localStorage["todoTasks"]);
     };
+
+    $rootScope.mode = {
+        searchbx: ''
+    }
     $scope.searchToDo = function () {
         focus('search');
-        $scope.searchbx = true;
+        $rootScope.mode.searchbx = true;
     };
     $scope.offsearch = function () {
-        $scope.searchbx = false;
+//        root.searchbx=false;
+        $rootScope.mode.searchbx = false;
         $scope.mo.searchs = '';
     };
 
@@ -386,18 +388,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
         searchs: ''
     };
 
-//    $scope.$watch('mo.searchs', function (value) {
-//
-//
-//        console.log(value);
-////        var srchRecord = $q.when(ConnectParse.searchData(value));
-////    $http.get('/api/search', {params: {string: val}}).success(function(data){
-////        srchRecord.then(function (response) {
-////            console.log(response);
-////            $scope.todayTask = response;
-//        });
-//
-//    });
 
     $rootScope.deleteRecord = function () {
         var j = 0;
@@ -623,10 +613,13 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
     }
     $scope.editing = function (item, date, time) {
         console.log(item);
-//        var dt = new Date(date).toDateString();
-//        var tm = new Date(time).toLocaleTimeString();
-        var dt = new Date(date).getDate() + " " + new Date(date).getMonth() + " " + new Date(date).getUTCFullYear();
-        var tm = new Date(time).getHours() + ":" + new Date(time).getMinutes();
+        var dt = $filter('date')(new Date(date), 'dd - MM - yyyy');
+        var tmm = new Date(time).toLocaleTimeString();
+        var tm = $filter('date')(new Date(time), 'hh:mm a');
+        console.log(tm);
+        console.log(tmm);
+//        var dt = new Date(date).getDate() + " - " + new Date(date).getMonth() + " - " + new Date(date).getUTCFullYear();
+//        var tm = new Date(time).getHours() + ":" + new Date(time).getMinutes()+" "+new Date(time).getMinutes();
         console.log(dt);
         console.log(tm);
         var itemss = $localStorage["todoTasks"];
@@ -638,11 +631,8 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $http, $log, $timeout, $ion
             }
         }
 //    console.log(pos);
-        var s = $state.go("app.editTodo", {a: item, b: dt, c: tm, d: pos});
-//   s.then(function(res){
-//      $rootScope.model.titl= a;
-//      console.log($rootScope.model.titl);
-//   }) 
+        $state.go("app.editTodo", {a: item, b: dt, c: tm, d: pos});
+
     };
     $scope.editRecord = function (time, editTodo) {
         console.log("editRecord controller CALLED");

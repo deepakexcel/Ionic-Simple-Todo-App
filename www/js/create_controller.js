@@ -53,7 +53,8 @@ angular.module('create.controller', ["angular-datepicker"])
                 {title: "Night", dtime: "8:00pm"},
                 {title: "Select a time..", dtime: ""}
             ];
-            $scope.mytime = $scope.myTimes[0];
+            $scope.mytime = {title: ''}
+            $scope.mytime.title = $scope.myTimes[0].title;
             $scope.selectTime = function () {
                 console.log("time");
                 var timeflag = this.mytime.title;
@@ -122,8 +123,10 @@ angular.module('create.controller', ["angular-datepicker"])
                 });
                 $state.go("app.addTodo");
             }
-
-            $scope.mydate = $scope.myDates[0];
+            $scope.mydate = {
+                title: ''
+            }
+            $scope.mydate.title = $scope.myDates[0].title;
             $scope.selectDate = function () {
                 var timeflag;
                 var date_options = {
@@ -167,60 +170,60 @@ angular.module('create.controller', ["angular-datepicker"])
             if (window.cordova && !$cordovaNetwork.isOnline()) {
                 $state.go('offline');
             }
-            $scope.defaultTime = function () {
-                console.log("time adjusted");
-                var d = new Date();
-                var tdate = d.getDate();
-                d.setDate(tdate);
-                $scope.todoAlarm = d.getTime();
-                var t = d.getHours();
-                if (t >= 20 && t < 23) {
-                    d.setDate(tdate + 1);
-                    $scope.todoAlarm = d.getTime();
-                    $scope.mydate = $scope.myDates[1];
-                    $scope.mytime = $scope.myTimes[0];
-                }
-                else if (t >= 17 && t < 20) {
-                    $scope.mytime = $scope.myTimes[3];
-                    d.setHours(20);
-                    d.setMinutes(0);
-                    $scope.alarmTime = d.getTime();
-
-                }
-                else if (t >= 13 && t < 17) {
-                    $scope.mytime = $scope.myTimes[2];
-                    d.setHours(17);
-                    d.setMinutes(0);
-                    $scope.alarmTime = d.getTime();
-
-                }
-                else if (t >= 9 && t < 13) {
-                    $scope.mytime = $scope.myTimes[1];
-                    d.setHours(13);
-                    d.setMinutes(0);
-                    $scope.alarmTime = d.getTime();
-
-                }
-                else if (t > 0 && t < 9) {
-                    $scope.mytime = $scope.myTimes[0];
-                    d.setHours(9);
-                    d.setMinutes(0);
-                    $scope.alarmTime = d.getTime();
-                }
-
-                // end of curTime
-
-            };
+//            $scope.defaultTime = function () {
+//                console.log("time adjusted");
+//                var d = new Date();
+//                var tdate = d.getDate();
+//                d.setDate(tdate);
+//                $scope.todoAlarm = d.getTime();
+//                var t = d.getHours();
+//                if (t >= 20 && t < 23) {
+//                    d.setDate(tdate + 1);
+//                    $scope.todoAlarm = d.getTime();
+//                    $scope.mydate = $scope.myDates[1];
+//                    $scope.mytime = $scope.myTimes[0];
+//                }
+//                else if (t >= 17 && t < 20) {
+//                    $scope.mytime = $scope.myTimes[3];
+//                    d.setHours(20);
+//                    d.setMinutes(0);
+//                    $scope.alarmTime = d.getTime();
+//
+//                }
+//                else if (t >= 13 && t < 17) {
+//                    $scope.mytime = $scope.myTimes[2];
+//                    d.setHours(17);
+//                    d.setMinutes(0);
+//                    $scope.alarmTime = d.getTime();
+//
+//                }
+//                else if (t >= 9 && t < 13) {
+//                    $scope.mytime = $scope.myTimes[1];
+//                    d.setHours(13);
+//                    d.setMinutes(0);
+//                    $scope.alarmTime = d.getTime();
+//
+//                }
+//                else if (t > 0 && t < 9) {
+//                    $scope.mytime = $scope.myTimes[0];
+//                    d.setHours(9);
+//                    d.setMinutes(0);
+//                    $scope.alarmTime = d.getTime();
+//                }
+//
+//                // end of curTime
+//
+//            };
             $scope.$on('$ionicView.enter', function () {
 //                $scope.model.title=item_title;
 ////                $scope.mydate.title=item_date;
 ////                $scope.mytime.title=item_time;
 //                console.log($scope.model.title);
-                if (!$localStorage["Initializer"]) {
-                    $state.go("app.addTodo");
-                }
+//                if (!$localStorage["Initializer"]) {
+//                    $state.go("app.addTodo");
+//                }
                 //$scope.todoAlarm = $scope.mydate;
-                $scope.defaultTime();
+//                $scope.defaultTime();
                 $scope.curTime = new Date().getTime();
                 //alert($scope.todoAlarm.getDate() + "" + $scope.alarmTime.getHours());
                 var tags = [];
@@ -388,6 +391,7 @@ angular.module('create.controller', ["angular-datepicker"])
                     d.setDate(d.getDate() + 1);
                     $scope.todoAlarm = d.getTime();
 //                    $scope.model.date = "Tomorrow";
+
                 }
                 $scope.mydate.title = selection;
 //                if($scope.reminderTime.isTimeDisplaying===true){
@@ -428,7 +432,7 @@ angular.module('create.controller', ["angular-datepicker"])
                             text: '<b>Save</b>',
                             type: 'button-positive',
                             onTap: function (e) {
-                                var date = $filter('date')($scope.tmp.newDate, 'dd MM yyyy');
+                                var date = $filter('date')($scope.tmp.newDate, 'dd - MM - yyyy');
 //                                $scope.model.date = date;
                                 $scope.mydate.title = date;
                                 console.log(date)
@@ -476,7 +480,7 @@ angular.module('create.controller', ["angular-datepicker"])
                             text: '<b>Save</b>',
                             type: 'button-positive',
                             onTap: function (e) {
-                                var time = $filter('date')($scope.tmp1.newDate, 'HH:mm');
+                                var time = $filter('date')($scope.tmp1.newDate, 'hh:mm a');
 //                                $scope.model.time = time;
                                 $scope.mytime.title = time;
                                 console.log(time);
@@ -536,12 +540,37 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.reminderTime = {};
             $scope.reminderTime.isTimeDisplaying = false;
             $scope.reminderTime.isDateDisplaying = false;
-            
+
             //Method for keyboard press save
+            $scope.setHightBlur = function () {
+                if ($scope.mytask.title.length <= 1) {
+                    $scope.high = "30px";
+                }
+            }
+
+            $scope.setHight = function () {
+
+                $scope.high = "50px";
+
+            }
+
+            var cnt = 0;
+            $scope.high = "30px";
             $scope.go = function (event) {
-//                console.log(event);
+//                $scope.high = "60px";
+//                console.log($scope.mytask.title.length);
+if($scope.mytask.title){
+                if($scope.mytask.title.length > 45){
+                    $scope.high = "70px";
+                 }else{
+                     $scope.high = "50px";
+                 }
+             }
                 var key = event.keyCode;
-//                console.log(key);
+
+
+
+                console.log(key);
                 if (key == 13) {
                     $scope.addTodo();
                 }
@@ -573,17 +602,20 @@ angular.module('create.controller', ["angular-datepicker"])
                     cancelButtonLabel: 'Default',
                     cancelButtonColor: '#000000'
                 };
+                if($localStorage["Initializer"]){
                 if ($rootScope.ifdeviceReady && window.cordova) {
                     console.log("ready");
                     console.log("rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
                     //$scope.todoAlarm = date.getTime();
                     //console.log($scope.todoAlarm);
                     var newPos;
+                    
                     if ($localStorage["Initializer"].length > 18) {
                         var checkTodoList = $q.when(ConnectParse.checkPosition(String($localStorage["Initializer"])));
                     } else {
                         var checkTodoList = $q.when(ConnectParse.checkPosition(parseInt($localStorage["Initializer"])));
                     }
+                
                     console.log(checkTodoList);
                     checkTodoList.then(
                             function (result) {
@@ -678,28 +710,29 @@ angular.module('create.controller', ["angular-datepicker"])
                                                 $scope.mytask.title = "";
                                                 console.log("Local Notification");
                                                 console.log(result);
-                                                console.log(result.time);
-                                                //schedule local notification fro saved todo
-
-                                                window.plugin.notification.local.schedule({
-                                                    id: String(result.time), // A unique id of the notification
+                                                if (result.time) {
+                                                    //schedule local notification fro saved todo
+                                                    console.log("Result Time hai")
+                                                    window.plugin.notification.local.schedule({
+                                                        id: String(result.time), // A unique id of the notification
 //                                                    date: new Date($scope.alarmTime), // This expects a date object
-                                                    text: "Notification  :- " + result.title, // The message that is displayed
-                                                    title: "Reminder", // The title of the message
-                                                    at: new Date($scope.alarmTime),
+                                                        text: result.title, // The message that is displayed
+                                                        title: "", // The title of the message
+                                                        at: new Date($scope.alarmTime),
 //                                                    every: 1
 //                                                      autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
-                                                });
-                                                console.log(new Date($scope.alarmTime));
-                                                /*
-                                                 for (var i = 0; i < $scope.todoList.length; i++) {
-                                                 if ($scope.todoList[i].title === result.title) {
-                                                 $scope.todoList[i].parseStatus = false;
-                                                 
-                                                 //$scope.todoAlarm="";
-                                                 }
-                                                 }
-                                                 */
+                                                    });
+                                                    console.log(new Date($scope.alarmTime));
+                                                    /*
+                                                     for (var i = 0; i < $scope.todoList.length; i++) {
+                                                     if ($scope.todoList[i].title === result.title) {
+                                                     $scope.todoList[i].parseStatus = false;
+                                                     
+                                                     //$scope.todoAlarm="";
+                                                     }
+                                                     }
+                                                     */
+                                                }
                                             }
                                         },
                                         function (error) {
@@ -716,7 +749,9 @@ angular.module('create.controller', ["angular-datepicker"])
                                 console.log(error);
                             }
                     );
+        
                     console.log("Y set" + $scope.todoAlarm);
+                }
                 }
                 else {
                     var newPos;
@@ -805,6 +840,36 @@ angular.module('create.controller', ["angular-datepicker"])
                                         function (result) {
                                             if (result) {
                                                 console.log(result.title);
+                                                
+                                                console.log("Local Notification ");
+                                                console.log(result);
+                                                if (result.time) {
+                                                    //schedule local notification fro saved todo
+                                                    console.log("Result Time hai")
+                                                    window.plugin.notification.local.schedule({
+                                                        id: String(result.time), // A unique id of the notification
+//                                                    date: new Date($scope.alarmTime), // This expects a date object
+                                                        text: result.title, // The message that is displayed
+                                                        title: "", // The title of the message
+                                                        at: new Date($scope.alarmTime),
+//                                                    every: 1
+//                                                      autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
+                                                    });
+                                                    console.log(new Date($scope.alarmTime));
+                                                    /*
+                                                     for (var i = 0; i < $scope.todoList.length; i++) {
+                                                     if ($scope.todoList[i].title === result.title) {
+                                                     $scope.todoList[i].parseStatus = false;
+                                                     
+                                                     //$scope.todoAlarm="";
+                                                     }
+                                                     }
+                                                     */
+                                                }
+                                                
+                                                
+                                                
+                                                
                                                 //schedule local notification fro saved todo
                                                 /*
                                                  window.plugin.notification.local.add({

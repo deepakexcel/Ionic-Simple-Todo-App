@@ -1,6 +1,13 @@
 angular.module('fb.controller', [])
-        .controller('FbCtrl', function ($cordovaNetwork, timeStorage, $scope, $timeout, $ionicLoading, $state, $rootScope, googleLogin, $q, ConnectParse, Alertuser, $localStorage) {
+        .controller('FbCtrl', function ($cordovaNetwork, timeStorage, $scope, $timeout, $ionicLoading, $state, $rootScope, googleLogin, $q, ConnectParse, Alertuser, $localStorage, $log) {
             var self = this;
+
+
+
+
+
+
+
             /*if (!$rootScope.ifdeviceReady) {
              alert("Please re launch the application");
              }*/
@@ -9,8 +16,8 @@ angular.module('fb.controller', [])
                     $state.go("app.addTodo");
                 }
             });
-            
-            $scope.withoutLogin = function(){                
+
+            $scope.withoutLogin = function () {
                 $ionicLoading.show({
                     content: '<i class="icon ion-loading-c">',
                     animation: 'fade-in',
@@ -18,10 +25,10 @@ angular.module('fb.controller', [])
                     maxWidth: 100,
                     showDelay: 0
                 });
-                $timeout(function(){
+                $timeout(function () {
                     $ionicLoading.hide();
-                $state.go("app.addTodo");
-            },1000);
+                    $state.go("app.addTodo");
+                }, 1000);
             };
 
             $scope.gLogin = function () {
@@ -42,12 +49,12 @@ angular.module('fb.controller', [])
 
                     gLogSuccess.then(function (res) {
                         $ionicLoading.show({
-                    content: '<i class="icon ion-loading-c">',
-                    animation: 'fade-in',
-                    showBackdrop: true,
-                    maxWidth: 100,
-                    showDelay: 0
-                });
+                            content: '<i class="icon ion-loading-c">',
+                            animation: 'fade-in',
+                            showBackdrop: true,
+                            maxWidth: 100,
+                            showDelay: 0
+                        });
                         console.log("gooooooooooooooogle")
                         console.log(res);
                         console.log(res.email);
@@ -114,24 +121,80 @@ angular.module('fb.controller', [])
 
 
             $scope.fbLogin = function () {
+//                if (!window.cordova ||(window.cordova && window.cordova.platformId == 'browser')) {
+//                    facebookConnectPlugin.browserInit('108597072822918');  //replace with ur app id
+//                    console.log("New PLATFORM");
+//                    var self = this;
+//                    $timeout(function () {
+//                        //timeout requried to wait for facebook plugin file to load
+//                        if (window.cordova.platformId === 'browser') {
+//                            console.log("init")
+//                            facebookConnectPlugin.browserInit('108597072822918');
+//                            console.log(" init 1111 ")
+//                        }
+//                        facebookConnectPlugin.getLoginStatus(function (response) {
+//                            $log.info(response);
+//                            if (response.status === 'connected') {
+//                                $log.info('User Already LoggedIn');
+//                                
+//                                self.getData();
+//                                $state.go("app.addTodo");
+//                            } else {
+//                                $log.info('User Not Logged In');
+//                            }
+//                        }, function () {
+//                            $log.warn('Get Login Status Error');
+//
+//                        });
+//                    }, 1000);
+//
+//
+//                    console.log("Facebook Browser");
+////                    $scope.facebookLogin = function () {
+//                    facebookConnectPlugin.login(['public_profile'], function (data) {
+//                        $log.info(data);
+//                        self.getData();
+//                    }, function (data) {
+//                        $log.warn(data);
+//                    });
+////                    };
+//
+//                    self.getData = function () {
+//                        facebookConnectPlugin.api('/me', ['public_profile'], function (data) {
+//                            $log.info(data);
+//                            console.log("FB Hiii")
+//                            $localStorage["Initializer"] = data.id;
+//                            $localStorage["loggedUsername"] = data.name;
+//                            console.log($localStorage["Initializer"]);
+//                            console.log(data);
+//
+//                            $scope.$apply(function () {
+//                                $scope.fb_data = data;
+//                            });
+//                        });
+//                    };
+//                }
+//
+//                else {
+                    console.log("APP Facebook");
+                    if (window.cordova) {
+                        console.log("APP Facebook");
+                        facebookConnectPlugin.login(["public_profile", "email"], function (response) {
+                            if (response.authResponse) {
+                                console.log("FB CHECKING PHONE");
+                                console.log(JSON.stringify(response));
 
-                if (window.cordova) {
-                    facebookConnectPlugin.login(["public_profile", "email"], function (response) {
-                        if (response.authResponse) {
-                            console.log("FB CHECKING PHONE");
-                            console.log(JSON.stringify(response));
+                                console.log(response);
 
-                            console.log(response);
-
-                        } else {
-                            // user is not logged in
-                            console.log("failed");
-                        }
-                        self.processFacebook();
-                    });
-                }
-//                for desktop
-                else {
+                            } else {
+                                // user is not logged in
+                                console.log("failed");
+                            }
+                            self.processFacebook();
+                        });
+                    }
+                    else{
+                        console.log("OLD FB PLATFORM")
                     $rootScope.ifdeviceReady = true;
 //                    $localStorage["loggedUsername"] = "meanishasingh@yahoo.com";
 //                    $localStorage["Initializer"] = 348139555381867;
@@ -140,7 +203,11 @@ angular.module('fb.controller', [])
                     delete $localStorage["todoTasks"];
                     $state.go("app.addTodo");
                 }
+                
             };
+
+
+
             self.processFacebook = function () {
                 facebookConnectPlugin.api('/me', null, function (response) {
                     console.log("FB PLUGIN CHECH");

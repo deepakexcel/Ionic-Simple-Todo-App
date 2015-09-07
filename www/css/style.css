@@ -35,6 +35,7 @@ input::-moz-placeholder {  /* Firefox 19+ */
 input:-ms-input-placeholder {  
    color: #8dbee0;  
 }
+
 body{
     font-family: 'Roboto';
     color:#000;

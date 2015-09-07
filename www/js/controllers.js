@@ -11,9 +11,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
     };
     $scope.showReorder = false;
     $rootScope.ifdeviceReady = true;
-    if (window.cordova && !$cordovaNetwork.isOnline()) {
-        $state.go('offline');
-    }
+//    if (window.cordova && !$cordovaNetwork.isOnline()) {
+//        $state.go('offline');
+//    }
     var self = this;
 //            if($scope.isTodayVisible == true){}
 
@@ -465,12 +465,14 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 //                alert($localStorage["todoTasks"].length);
         console.log($localStorage["todoTasks"]);
         var checkTodoList;
+        if($localStorage["Initializer"]){
         if ($localStorage["Initializer"].length > 18) {
 //                    alert("a");
             checkTodoList = $q.when(ConnectParse.checkIfRecordExist(String($localStorage["Initializer"])));
         } else {
 //                    alert("b");
             checkTodoList = $q.when(ConnectParse.checkIfRecordExist(parseInt($localStorage["Initializer"])));
+        }
         }
 
         checkTodoList.then(
@@ -506,6 +508,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                     console.log(error);
                 }
         );
+
     };
     $scope.reorderMe = function (item, from, to) {
         console.log("reorderMe controller CALLED");
@@ -728,6 +731,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                         console.log(error);
                         $scope.$broadcast('scroll.infiniteScrollComplete');
                         $scope.$broadcast('scroll.refreshComplete');
+                        $scope.processLocalStorage($localStorage['todoTasks']);
                     }
             );
         }

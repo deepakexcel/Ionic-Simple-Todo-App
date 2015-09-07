@@ -1,7 +1,9 @@
 
 angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.controller', 'edit.controller', 'ui.bootstrap.datetimepicker', 'fb.controller', 'app.controller', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filters', 'ngStorage', 'angular-datepicker', 'GoogleLoginService', 'timestorage'])
-        .run(function ($ionicPlatform, $rootScope, $state, $cordovaNetwork, $location, $localStorage, $interval) {
+        .run(function ($ionicPlatform, $rootScope, $state, $cordovaNetwork, $location, $localStorage, $interval,$timeout) {
             $ionicPlatform.ready(function () {
+//                console.log(window.cordova.platformId);
+
                 // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
                 // for form inputs)
                 if (window.cordova && $cordovaNetwork.isOnline()) {
@@ -14,27 +16,30 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                         // org.apache.cordova.statusbar required
                         StatusBar.styleDefault();
                     }
-                    if ($localStorage['Initializer'] || $localStorage['todoTasks']) {
+                    
+
+                } else {
+                   
+                }
+                
+                if ($localStorage['Initializer'] || $localStorage['todoTasks']) {
                         $state.go('app.addTodo')
                     } else {
                         $state.go('login');
                     }
-
-
-                }
                 $interval(function () {
                     if ($localStorage["todoTasks"]) {
                         var items = $localStorage["todoTasks"];
-                        console.log(items);
+//                        console.log(items);
                         for (var i = 0; i < items.length; i++) {
                             var itemTime = new Date(items[i].alarmTime).toTimeString();
                             var itemDate = new Date(items[i].time).toDateString();
-                            console.log("Interval notification" + ":-" + i);
-                            console.log(itemTime);
-                            console.log(itemDate);
-                            console.log(items[i]);
-                            console.log(new Date(items[i].alarmTime))
-                            console.log(new Date());
+//                            console.log("Interval notification" + ":-" + i);
+//                            console.log(itemTime);
+//                            console.log(itemDate);
+//                            console.log(items[i]);
+//                            console.log(new Date(items[i].alarmTime))
+//                            console.log(new Date());
 //                            if (new Date(items[i].alarmTime) == new Date()) {
                             if ((itemTime == new Date().toTimeString()) && (itemDate == new Date().toDateString())) {
                                 window.plugin.notification.local.schedule({
@@ -85,16 +90,16 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                         templateUrl: "templates/menu.html",
                         controller: 'AppCtrl'
                     })
-                    .state('app.category', {
-                        url: "/category",
-                        cache: false,
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/category.html",
-                                controller: 'AddTodoCtrl'
-                            }
-                        }
-                    })
+//                    .state('app.category', {
+//                        url: "/category",
+//                        cache: false,
+//                        views: {
+//                            'menuContent': {
+//                                templateUrl: "templates/category.html",
+//                                controller: 'AddTodoCtrl'
+//                            }
+//                        }
+//                    })
 
                     .state('app.createTodo', {
                         url: "/createTodo",
@@ -117,26 +122,26 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                             }
                         }
                     })
-                    .state('app.upcoming', {
-                        url: "/upcoming",
-                        cache: false,
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/upcoming.html",
-                                controller: 'AddTodoCtrl'
-                            }
-                        }
-                    })
-                    .state('app.today', {
-                        url: "/today",
-                        cache: false,
-                        views: {
-                            'menuContent': {
-                                templateUrl: "templates/today.html",
-                                controller: 'AddTodoCtrl'
-                            }
-                        }
-                    })
+//                    .state('app.upcoming', {
+//                        url: "/upcoming",
+//                        cache: false,
+//                        views: {
+//                            'menuContent': {
+//                                templateUrl: "templates/upcoming.html",
+//                                controller: 'AddTodoCtrl'
+//                            }
+//                        }
+//                    })
+//                    .state('app.today', {
+//                        url: "/today",
+//                        cache: false,
+//                        views: {
+//                            'menuContent': {
+//                                templateUrl: "templates/today.html",
+//                                controller: 'AddTodoCtrl'
+//                            }
+//                        }
+//                    })
                     .state('app.completed', {
                         url: "/completed",
                         cache: false,

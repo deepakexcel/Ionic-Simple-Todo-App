@@ -101,24 +101,25 @@ angular.module('starter.services', [])
             };
             service.save = function (todoObj) {
                 console.log("SAVE SERVICE CALLED");
-                //var ToDoObject1 = Parse.Object.extend("ToDoObject1");
-                var parseObj = new ToDoObject();
-                parseObj.set("userID", parseInt(todoObj.userID));
-                parseObj.set("parseStatus", false);
-                parseObj.set("done", todoObj.done);
+                if (todoObj.userID) {
+                    //var ToDoObject1 = Parse.Object.extend("ToDoObject1");
+                    var parseObj = new ToDoObject();
+                    parseObj.set("userID", parseInt(todoObj.userID));
+                    parseObj.set("parseStatus", false);
+                    parseObj.set("done", todoObj.done);
 //                parseobj.set("todoalarm", todoObj.todoAlarm)
-                if (todoObj.time) {
-                    parseObj.set("time", todoObj.time);
-                    console.log("time");
-                }
-                if (todoObj.alarmTime) {
-                    parseObj.set("alarmTime", todoObj.alarmTime);
-                    console.log("alarmTime");
-                }
-                parseObj.set("todo_title", todoObj.title);
-                parseObj.set("position", todoObj.position);
-                console.log("Task Saved...");
-                console.log(todoObj.todoTag);
+                    if (todoObj.time) {
+                        parseObj.set("time", todoObj.time);
+                        console.log("time");
+                    }
+                    if (todoObj.alarmTime) {
+                        parseObj.set("alarmTime", todoObj.alarmTime);
+                        console.log("alarmTime");
+                    }
+                    parseObj.set("todo_title", todoObj.title);
+                    parseObj.set("position", todoObj.position);
+                    console.log("Task Saved...");
+                    console.log(todoObj.todoTag);
 //                if (todoObj.todoTag.length===0 || todoObj.todoTag===" "||todoObj.todoTag==="") {
 //                    parseObj.set("todoTag", null);
 //                    console.log(todoObj.todoTag.length +"todoObj.todoTag.length===0");
@@ -128,32 +129,33 @@ angular.module('starter.services', [])
 //                    console.log("else todoTag");
 //                }
 
-                var promiseObject = $q.defer();
-                parseObj.save(null, {
-                    success: function (data) {
-                        console.log("success todoTag");
-                        // Execute any logic that should take place after the object is saved.
-                        var ifRetrieved = service.retrieve(data.id);
-                        ifRetrieved.then(
-                                function (result) {
-                                    console.log("success ifRetrieved");
-                                    promiseObject.resolve(result);
-                                },
-                                function (error) {
-                                    console.log("success error");
-                                    promiseObject.reject(error);
-                                }
-                        );
+                    var promiseObject = $q.defer();
+                    parseObj.save(null, {
+                        success: function (data) {
+                            console.log("success todoTag");
+                            // Execute any logic that should take place after the object is saved.
+                            var ifRetrieved = service.retrieve(data.id);
+                            ifRetrieved.then(
+                                    function (result) {
+                                        console.log("success ifRetrieved");
+                                        promiseObject.resolve(result);
+                                    },
+                                    function (error) {
+                                        console.log("success error");
+                                        promiseObject.reject(error);
+                                    }
+                            );
 
-                    },
-                    error: function (data, error) {
-                        console.log("error error");
-                        // Execute any logic that should take place if the save fails.
-                        // error is a Parse.Error with an error code and message.
-                        promiseObject.reject(error.message);
-                    }
-                });
-                return promiseObject.promise;
+                        },
+                        error: function (data, error) {
+                            console.log("error error");
+                            // Execute any logic that should take place if the save fails.
+                            // error is a Parse.Error with an error code and message.
+                            promiseObject.reject(error.message);
+                        }
+                    });
+                    return promiseObject.promise;
+                }
             };
 
 
@@ -238,8 +240,8 @@ angular.module('starter.services', [])
                 });
                 return myResponse.promise;
             };
-            
-            service.searchData = function(value){
+
+            service.searchData = function (value) {
                 var myToDoQuery = new Parse.Query(ToDoObject);
                 var myResponse = $q.defer();
                 var myDataObj = {};
@@ -262,18 +264,18 @@ angular.module('starter.services', [])
                 });
                 return myResponse.promise;
             }
-            
+
             service.update = function (item_pos, uid, toUpdateobj) {
 //                var toUpdateValue = toUpdateobj.title;
                 var promiseObject = $q.defer();
 //                alert(item_pos);
-                var parseObj ;
+                var parseObj;
                 var query = new Parse.Query(ToDoObject);
-                if(uid.length > 18){
+                if (uid.length > 18) {
                     var ddd = query.equalTo("g_userID", String(uid));
-                }else{
-                var ddd = query.equalTo("userID", parseInt(uid));
-            }
+                } else {
+                    var ddd = query.equalTo("userID", parseInt(uid));
+                }
                 console.log(ddd);
 //                query.descending("position");
                 query.find({
@@ -284,7 +286,7 @@ angular.module('starter.services', [])
 //                                console.log(results[i].get("position"));
                                 if (parseInt(item_pos) === results[i].get("position")) {
                                     console.log(results[i].get("position"));
-                                    parseObj=results[i];
+                                    parseObj = results[i];
                                     parseObj.save(null, {
                                         success: function (data) {
 

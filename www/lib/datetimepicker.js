@@ -272,7 +272,7 @@
                 for (var j = 0; j < 7; j += 1) {
 //                    alert(new Date);
                   var monthMoment = moment.utc(startDate).add((i * 7) + j, 'days');
-                  console.log(monthMoment);
+//                  console.log(monthMoment);
                   var dateValue = {
                     'utcDateValue': monthMoment.valueOf(),
                     'display': monthMoment.format('D'),
@@ -309,17 +309,17 @@
 
               for (var i = 0; i < 24; i += 1) {
                 var hourMoment = moment.utc(selectedDate).add(i, 'hours');
-                console.log(hourMoment);
-                console.log(new Date().getTime());
+//                console.log(hourMoment);
+//                console.log(new Date().getTime());
                 
                 var dateValue = {
                   'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
-                  'past':hourMoment.isBefore(new Date()),
-                  'active': hourMoment.format('YYYY-MM-DD H') === activeFormat,
+                  'past':hourMoment.isBefore(new Date().getTime()),
+                  'active': hourMoment.format('YYYY-MM-DD H') === activeFormat
                   
                 };
-                    console.log(dateValue.past);
+//                    console.log(dateValue.past);
                 result.dates.push(new DateObject(dateValue));
               }
 
@@ -352,7 +352,7 @@
                   'utcDateValue': hourMoment.valueOf(),
                   'display': hourMoment.format('LT'),
                   'active': hourMoment.format('YYYY-MM-DD H:mm') === activeFormat,
-                  'past':hourMoment.isBefore(new Date()),
+                  'past':hourMoment.isBefore(new Date())
                 };
 
                 result.dates.push(new DateObject(dateValue));

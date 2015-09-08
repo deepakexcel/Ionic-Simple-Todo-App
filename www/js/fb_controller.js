@@ -2,21 +2,17 @@ angular.module('fb.controller', [])
         .controller('FbCtrl', function ($cordovaNetwork, timeStorage, $scope, $timeout, $ionicLoading, $state, $rootScope, googleLogin, $q, ConnectParse, Alertuser, $localStorage, $log) {
             var self = this;
 
-
-
-
-
-
-
             /*if (!$rootScope.ifdeviceReady) {
              alert("Please re launch the application");
              }*/
+            //check for login
             $scope.$on('$ionicView.enter', function () {
                 if ($localStorage["Initializer"]) {
                     $state.go("app.addTodo");
                 }
             });
 
+            //click on skip login then call function
             $scope.withoutLogin = function () {
                 $ionicLoading.show({
                     content: '<i class="icon ion-loading-c">',
@@ -31,10 +27,8 @@ angular.module('fb.controller', [])
                 }, 1000);
             };
 
+//             via Google Login
             $scope.gLogin = function () {
-
-
-
                 console.log("123 Check");
                 if (window.cordova) {
                     var opt = {
@@ -119,6 +113,7 @@ angular.module('fb.controller', [])
                 }
             };
 
+//            via Facebook Login
 
             $scope.fbLogin = function () {
 //                if (!window.cordova ||(window.cordova && window.cordova.platformId == 'browser')) {

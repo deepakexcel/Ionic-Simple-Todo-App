@@ -126,16 +126,16 @@ angular.module('starter.filters', [])
             console.log("TAG 1f");
             return function (items) {
                 var searchText = $rootScope.selectedTag;
-                console.log(items);
-                console.log(searchText);
+//                console.log(items);
+//                console.log(searchText);
                 var resItem = [];
                 for (var i = 0; i < items.length; i++) {
                     for (var j = 0; j < items[i].todoTag.length; j++) {
-                        console.log(items[i].title + "--" + items[i].todoTag);
+//                        console.log(items[i].title + "--" + items[i].todoTag);
                         if (items[i].todoTag[j].title === searchText) {
                             resItem.push(items[i]);
-                            console.log(items[i]);
-                            console.log("final");
+//                            console.log(items[i]);
+//                            console.log("final");
                         }
                     }
 
@@ -145,7 +145,7 @@ angular.module('starter.filters', [])
         })
         .filter('titlecase', function () {
             return function (str) {
-                console.log(str);
+//                console.log(str);
                 if (str)
                     return str.replace(/\w\S*/g, function (txt) {
                         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -183,8 +183,8 @@ angular.module('starter.filters', [])
                 
                 var todayDate = new Date().getDate();
                 var thisweek = todayDate+3;
-                console.log("UPPPPCCCOOOMMMIIINNNGG");
-                console.log(thisweek);
+//                console.log("UPPPPCCCOOOMMMIIINNNGG");
+//                console.log(thisweek);
                 for (var i = 0; i < items.length; i++) {
                     var itemDate = new Date(items[i].time).getDate();
                     if (itemDate > thisweek) {

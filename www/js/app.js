@@ -22,11 +22,13 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
                    
                 }
                 
+                //checking login and goto page on device ready
                 if ($localStorage['Initializer'] || $localStorage['todoTasks']) {
                         $state.go('app.addTodo')
                     } else {
                         $state.go('login');
                     }
+                    
                 $interval(function () {
                     if ($localStorage["todoTasks"]) {
                         var items = $localStorage["todoTasks"];

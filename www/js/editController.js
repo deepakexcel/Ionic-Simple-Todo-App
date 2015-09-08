@@ -1,24 +1,17 @@
 angular.module('edit.controller', ["angular-datepicker"])
         .controller('editTodoCtrl', function ($cordovaNetwork, $ionicHistory, $filter, $stateParams, $ionicPopup, $cordovaDatePicker, Alertuser, $rootScope, $scope, $state, $q, $localStorage, ConnectParse) {
-    
+
             var item_title = $stateParams.a;
             var item_date = $stateParams.b;
             var item_time = $stateParams.c;
             var item_position = $stateParams.d;
-
             console.log(item_date);
             console.log(item_time);
-
-
             $scope.mytask = {};
             console.log($stateParams.a);
-
-
-
-            $scope.saveee = function () {
-                alert($scope.model.title);
-            };
-
+//            $scope.saveee = function () {
+//                alert($scope.model.title);
+//            };
             $scope.datePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
@@ -53,6 +46,7 @@ angular.module('edit.controller', ["angular-datepicker"])
             ];
             $scope.mytime = {title: ''}
             $scope.mytime.title = $scope.myTimes[0].title;
+            //Time Selection
             $scope.selectTime = function () {
                 console.log("time");
                 var timeflag = this.mytime.title;
@@ -116,11 +110,10 @@ angular.module('edit.controller', ["angular-datepicker"])
                 }
             };
 
-//            $scope.gotoTask = function () {
-//                $state.go("app.addTodo");
-//            }
+
             $scope.mydate = {title: ''}
             $scope.mydate.title = $scope.myDates[0].title;
+            //Date Selection
             $scope.selectDate = function () {
                 var timeflag;
                 var date_options = {
@@ -164,75 +157,21 @@ angular.module('edit.controller', ["angular-datepicker"])
             if (window.cordova && !$cordovaNetwork.isOnline()) {
                 $state.go('offline');
             }
-//            $scope.defaultTime = function () {
-//                console.log("time adjusted");
-//                var d = new Date();
-//                var tdate = d.getDate();
-//                d.setDate(tdate);
-//                $scope.todoAlarm = d.getTime();
-//                var t = d.getHours();
-//                if (t >= 20 && t < 23) {
-//                    d.setDate(tdate + 1);
-//                    $scope.todoAlarm = d.getTime();
-//                    $scope.mydate = $scope.myDates[1];
-////                    $scope.mytime = $scope.myTimes[0];
-//                }
-//                else if (t >= 17 && t < 20) {
-////                    $scope.mytime = $scope.myTimes[3];
-//                    d.setHours(20);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t >= 13 && t < 17) {
-////                    $scope.mytime = $scope.myTimes[2];
-//                    d.setHours(17);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t >= 9 && t < 13) {
-////                    $scope.mytime = $scope.myTimes[1];
-//                    d.setHours(13);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t > 0 && t < 9) {
-////                    $scope.mytime = $scope.myTimes[0];
-//                    d.setHours(9);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//                }
-//
-//                // end of curTime
-//
-//            };
+
             $scope.$on('$ionicView.enter', function () {
-//                $scope.mytime={title:''};
-//                if (item_title.length > 45) {
-//                    $scope.high = "70px";
-//                } if(item_title.length > 55){
-//                    $scope.high = "50px";
-//                }else {
-//                    $scope.high = "45px";
-//                }
+                //retriving data frm model
                 $scope.mytask.title = item_title;
                 $scope.mydate.title = item_date;
                 $scope.mytime.title = item_time;
                 console.log($scope.mytask.title);
-                if($scope.mytask.title.length > 45){
+                if ($scope.mytask.title.length > 45) {
                     $scope.high = "70px";
-                }else{
+                } else {
                     $scope.high = "45px";
                 }
-//                if (!$localStorage["Initializer"]) {
-//                    $state.go("app.addTodo");
-//                }
-                //$scope.todoAlarm = $scope.mydate;
-//                $scope.defaultTime();
                 $scope.curTime = new Date().getTime();
                 //alert($scope.todoAlarm.getDate() + "" + $scope.alarmTime.getHours());
+
                 var tags = [];
                 if ($localStorage["userTags"]) {
                     tags = $localStorage["userTags"];
@@ -285,8 +224,6 @@ angular.module('edit.controller', ["angular-datepicker"])
                 return sum;
             };
 
-
-
             $scope.noReminder = function () {
                 $scope.showReminder = false;
                 this.showReminder = false;
@@ -297,39 +234,7 @@ angular.module('edit.controller', ["angular-datepicker"])
             };
             var counter = 0;
 
-
-
-
-
-            $scope.showDate = function (selection, e) {
-
-                console.log(selection);
-
-                console.log($scope.mydate.title);
-                //adjust time
-                var d = new Date();
-                if (selection === "Today") {
-                    $scope.todoAlarm = d.getTime();
-//                    $scope.model.date = "Today";
-                }
-                if (selection === "Tomorrow") {
-                    d.setDate(d.getDate() + 1);
-                    $scope.todoAlarm = d.getTime();
-//                    $scope.model.date = "Tomorrow";
-                }
-                $scope.mydate.title = selection;
-//                if($scope.reminderTime.isTimeDisplaying===true){
-//                    $scope.reminderTime.isTimeDisplaying=false;
-//                }
-                // $scope.reminderTime.isDateDisplaying = !$scope.reminderTime.isDateDisplaying;
-                if (selection === "Select a date..") {
-//                    $scope.model.date = "";
-                    $scope.pickDate1();
-
-                }
-
-            };
-
+            //selecting Date from Datepicker
             $scope.pickDate1 = function () {
                 $scope.aaa = true;
 //                $scope.bbb=false;
@@ -368,7 +273,6 @@ angular.module('edit.controller', ["angular-datepicker"])
                         }
                     ]
                 });
-
                 date_options.then(function (res) {
                     console.log("Response");
                     console.log(res);
@@ -377,9 +281,7 @@ angular.module('edit.controller', ["angular-datepicker"])
 
             };
 
-
-
-
+//          Selecting time from timepicker
             $scope.pickTime1 = function () {
                 $scope.aaa = false;
                 $scope.bbb = true;
@@ -389,11 +291,8 @@ angular.module('edit.controller', ["angular-datepicker"])
                 if ($scope.reminderTime.isDateDisplaying == true) {
                     $scope.reminderTime.isDateDisplaying = false;
                 }
-
                 $scope.tmp1 = {};
-
                 $scope.tmp1.newDate = $scope.model.time;
-
                 var time_options = $ionicPopup.show({
                     template: "<datetimepicker ng-model=" + "tmp1.newDate" + "   data-datetimepicker-config=" + "{startView:'hour',minView:'minute'}" + "></datetimepicker>",
                     title: "Time",
@@ -419,63 +318,70 @@ angular.module('edit.controller', ["angular-datepicker"])
                 });
             };
 
+//  showing date 
+            $scope.showDate = function (selection, e) {
+                console.log(selection);
+                console.log($scope.mydate.title);
+                //adjust time
+                var d = new Date();
+                if (selection === "Today") {
+                    $scope.todoAlarm = d.getTime();
+                }
+                if (selection === "Tomorrow") {
+                    d.setDate(d.getDate() + 1);
+                    $scope.todoAlarm = d.getTime();
+                }
+                $scope.mydate.title = selection;
+
+                if (selection === "Select a date..") {
+                    $scope.pickDate1();
+
+                }
+
+            };
+
             $scope.showTime = function (e, selection) {
-                //e.preventDefault();
-//                e.stopPropagation();
+             
                 var d = new Date();
                 if (selection === "Morning") {
                     d.setHours(9);
                     d.setMinutes(0);
                     $scope.alarmTime = d.getTime();
-//                    $scope.model.time = "Morning";
                 }
                 if (selection === "Afternoon") {
                     d.setHours(13);
                     d.setMinutes(0);
                     d.setDate(d.getDate() + 1);
                     $scope.alarmTime = d.getTime();
-//                    $scope.model.time = "Afternoon";
                 }
                 if (selection === "Evening") {
                     d.setHours(17);
                     d.setMinutes(0);
                     $scope.alarmTime = d.getTime();
-//                    $scope.model.time = "Evening";
                 }
                 if (selection === "Night") {
                     d.setHours(20);
                     d.setMinutes(0);
                     d.setDate(d.getDate() + 1);
                     $scope.alarmTime = d.getTime();
-//                    $scope.model.time = "Night";
-
                 }
-
                 $scope.mytime.title = selection;
-
-
                 if (selection === "Select a time..") {
 
                     $scope.model.time = '';
                     $scope.pickTime1();
                 }
             };
-
             $scope.reminderTime = {};
             $scope.reminderTime.isTimeDisplaying = false;
             $scope.reminderTime.isDateDisplaying = false;
-
-
             $scope.highedt = "30px";
-
             $scope.goedt = function (event) {
-                
-                if($scope.mytask.title.length > 45){
+                if ($scope.mytask.title.length > 45) {
                     $scope.high = "70px";
-                }else{
+                } else {
                     $scope.high = "50px";
                 }
-
                 var key = event.keyCode;
 
 //                console.log(key);
@@ -485,16 +391,13 @@ angular.module('edit.controller', ["angular-datepicker"])
 
             };
 
-
+//          Editing tasks
             $scope.editRecordd = function () {
-
                 console.log($scope.mytask.title);
                 console.log(parseInt($scope.todoAlarm));
                 console.log($scope.alarmTime);
                 console.log("hiiiiii");
                 console.log("hello");
-
-
                 if (!$scope.mytask.title || $scope.mytask.title === " " || $scope.mytask.title === "" || $scope.mytask.title.length === 0) {
                     if (window.cordova) {
                         Alertuser.alert("Please add the task");
@@ -511,8 +414,6 @@ angular.module('edit.controller', ["angular-datepicker"])
                         var timee = $localStorage["todoTasks"].time;
                     }
                 }
-
-
                 var val = $scope.mytask.title;
                 var todoObj = {};
                 todoObj.title = val;
@@ -538,19 +439,81 @@ angular.module('edit.controller', ["angular-datepicker"])
 //                                                    console.log(storedTask);
 //                                                    console.log(storedTask[1].position);
                             var storedTask = $localStorage["todoTasks"];
+
                             for (var i = 0; i < storedTask.length; i++) {
 
                                 if (storedTask[i].position == item_position) {
                                     storedTask[i].title = todoObj.title;
                                     storedTask[i].alarmTime = todoObj.alarmTime;
                                     storedTask[i].time = todoObj.time;
+
+                                    console.log("Edited Notification ");
+//                                                console.log(result);
+                                    if (storedTask[i].time && window.cordova) {
+                                        var dat = new Date(todoObj.time);
+                                        var tm = new Date(todoObj.alarmTime);
+                                        var x = new Date(new Date().toDateString()).getTime();
+                                        var finalTime = (new Date((dat.getTime() + tm.getTime()) - x));
+                                        console.log(finalTime);
+                                        console.log(" Edit Main Hoon Date");
+                                        //schedule local notification fro saved todo
+                                        console.log("Result Time hai")
+                                        window.plugin.notification.local.schedule({
+                                            id: String(storedTask[i].time),
+                                            text: todoObj.title,
+                                            title: "",
+                                            at: finalTime,
+//                                                    
+                                        });
+                                        console.log(new Date(storedTask[i].alarmTime));
+
+                                    }
                                 }
                             }
                             $localStorage['todoTasks'] = storedTask;
                             console.log("edited");
                             $state.go("app.addTodo");
+
                         }, function (error) {
                     console.log("Not edited");
+                    var storedTask = $localStorage["todoTasks"];
+//                                                    console.log(storedTask);
+//                                                    console.log(storedTask[1].position);
+                    var storedTask = $localStorage["todoTasks"];
+                    for (var i = 0; i < storedTask.length; i++) {
+
+                        if (storedTask[i].position == item_position) {
+                            storedTask[i].title = todoObj.title;
+                            storedTask[i].alarmTime = todoObj.alarmTime;
+                            storedTask[i].time = todoObj.time;
+
+                            console.log("OffLine Edited Notification ");
+                            var dat = new Date(todoObj.time);
+                            var tm = new Date(todoObj.alarmTime);
+                            var x = new Date(new Date().toDateString()).getTime();
+                            var finalTime = (new Date((dat.getTime() + tm.getTime()) - x));
+                            console.log(finalTime);
+                            console.log("offline Edit Main Hoon Date");
+//                                                console.log(result);
+                            if (storedTask[i].time && window.cordova) {
+                                //schedule local notification fro saved todo
+                                console.log("Result Time hai")
+                                window.plugin.notification.local.schedule({
+                                    id: String(storedTask[i].time),
+                                    text: todoObj.title,
+                                    title: "",
+                                    at: finalTime,
+//                                                    
+                                });
+                                console.log(new Date(storedTask[i].alarmTime));
+
+                            }
+                        }
+                    }
+                    $localStorage['todoTasks'] = storedTask;
+                    console.log("edited in localstorage");
+                    $state.go("app.addTodo");
+
                 });
             }
 

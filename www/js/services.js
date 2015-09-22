@@ -68,14 +68,7 @@ angular.module('starter.services', [])
             service.glSave = function (todoObj) {
                 console.log("GOOGLE Login SERVICE CALLED");
                 console.log(todoObj);
-//                $localStorage["profile"]=todoObj.profile;
-//                var ToDoObject1 = Parse.Object.extend("ToDoObject1");
                 var parseObj = new GoogleAppUser();
-//                parseObj.set("fbid", parseInt(todoObj.id));
-//                parseObj.set("fname", String(todoObj.fname));
-//                parseObj.set("lname", String(todoObj.lname));
-//                parseObj.set("gender", String(todoObj.gender));
-//                parseObj.set("profile", String(todoObj.profile));
                 parseObj.set("google_id", String(todoObj.id));
                 parseObj.set("name", String(todoObj.fname));
                 parseObj.set("email", String(todoObj.email));
@@ -120,14 +113,6 @@ angular.module('starter.services', [])
                     parseObj.set("position", todoObj.position);
                     console.log("Task Saved...");
                     console.log(todoObj.todoTag);
-//                if (todoObj.todoTag.length===0 || todoObj.todoTag===" "||todoObj.todoTag==="") {
-//                    parseObj.set("todoTag", null);
-//                    console.log(todoObj.todoTag.length +"todoObj.todoTag.length===0");
-//                }
-//                else{
-//                    parseObj.set("todoTag", todoObj.todoTag);
-//                    console.log("else todoTag");
-//                }
 
                     var promiseObject = $q.defer();
                     parseObj.save(null, {
@@ -158,7 +143,6 @@ angular.module('starter.services', [])
                 }
             };
 
-
             service.Gsave = function (todoObj) {
                 console.log("GSAVE SERVICE CALLED");
                 //var ToDoObject1 = Parse.Object.extend("ToDoObject1");
@@ -178,15 +162,6 @@ angular.module('starter.services', [])
                 parseObj.set("position", todoObj.position);
                 console.log("Task Saved...");
                 console.log(todoObj.todoTag);
-//                if (todoObj.todoTag.length===0 || todoObj.todoTag===" "||todoObj.todoTag==="") {
-//                    parseObj.set("todoTag", null);
-//                    console.log(todoObj.todoTag.length +"todoObj.todoTag.length===0");
-//                }
-//                else{
-//                    parseObj.set("todoTag", todoObj.todoTag);
-//                    console.log("else todoTag");
-//                }
-
                 var promiseObject = $q.defer();
                 parseObj.save(null, {
                     success: function (data) {
@@ -214,6 +189,64 @@ angular.module('starter.services', [])
                 });
                 return promiseObject.promise;
             };
+            
+            service.trashSave = function (trashObj) {
+                console.log("Trash SAVE SERVICE CALLED");
+                console.log(trashObj);
+                if (trashObj.userID) {
+                    var parseObj1 = new TrashObject();
+                    if(String(trashObj.userID).length > 18){
+                        parseObj1.set("g_userID", String(trashObj.userID));
+                    }else{
+                        parseObj1.set("userID", parseInt(trashObj.userID));
+                    }
+//                    if(trashObj.userID.length)
+                    
+                    parseObj1.set("parseStatus", false);
+                    parseObj1.set("done", trashObj.done);
+//                parseobj.set("todoalarm", todoObj.todoAlarm)
+                    if (trashObj.time) {
+                        parseObj1.set("time", trashObj.time);
+                        console.log("time");
+                    }
+                    if (trashObj.alarmTime) {
+                        parseObj1.set("alarmTime", trashObj.alarmTime);
+                        console.log("alarmTime");
+                    }
+                    parseObj1.set("todo_title", trashObj.title);
+                    parseObj1.set("position", trashObj.position);
+                    console.log("Task Saved...");
+                    console.log(trashObj.todoTag);
+
+                    var promiseObject = $q.defer();
+                    parseObj1.save(null, {
+                        success: function (data) {
+                            console.log("success todoTag");
+                            // Execute any logic that should take place after the object is saved.
+                            var ifRetrieved = service.retrieve(data.id);
+                            ifRetrieved.then(
+                                    function (result) {
+                                        console.log("success ifRetrieved");
+                                        promiseObject.resolve(result);
+                                    },
+                                    function (error) {
+                                        console.log("success error");
+                                        promiseObject.reject(error);
+                                    }
+                            );
+
+                        },
+                        error: function (data, error) {
+                            console.log("error error");
+                            // Execute any logic that should take place if the save fails.
+                            // error is a Parse.Error with an error code and message.
+                            promiseObject.reject(error.message);
+                        }
+                    });
+                    return promiseObject.promise;
+                }
+            };
+
 
 
             service.retrieve = function (parseObjID) {
@@ -271,10 +304,12 @@ angular.module('starter.services', [])
 //                alert(item_pos);
                 var parseObj;
                 var query = new Parse.Query(ToDoObject);
-                if (uid.length > 18) {
-                    var ddd = query.equalTo("g_userID", String(uid));
-                } else {
-                    var ddd = query.equalTo("userID", parseInt(uid));
+                if (uid) {
+                    if (uid.length > 18) {
+                        var ddd = query.equalTo("g_userID", String(uid));
+                    } else {
+                        var ddd = query.equalTo("userID", parseInt(uid));
+                    }
                 }
                 console.log(ddd);
 //                query.descending("position");
@@ -502,7 +537,29 @@ angular.module('starter.services', [])
                 return promiseObject.promise;
 
             };
-            service.deleteRecord = function (parseObj) {
+            
+              service.deleteRecord = function (parseObj) {
+                console.log(parseObj);
+//                console.log(toUpdateField);
+//                console.log(doneStatus);
+                console.log("Delete SERVICE CALLED");
+                var toUpdateValue = true;
+                var promiseObject = $q.defer();
+                parseObj.save(null, {
+                    success: function (data) {
+                        // Execute any logic that should take place after the object is saved.
+                        parseObj.set("deleteStatus", toUpdateValue);
+                        parseObj.save();
+                        promiseObject.resolve(data);
+                    },
+                    error: function (data, error) {
+                        promiseObject.reject(error.message);
+                    }
+                });
+                return promiseObject.promise;
+            };
+            
+            service.deleteParseRecord = function (parseObj) {
                 console.log("deleteRecord SERVICE CALLED");
                 var promiseObject = $q.defer();
 

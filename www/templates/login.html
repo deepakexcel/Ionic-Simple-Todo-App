@@ -1,15 +1,22 @@
-<ion-view class="bgcolor">  
-    <ion-content class="bgcolor1">
-            <img ng-src="images/logo.jpg" class="beCenter margin-top100 margin-bottom100">
-            <button taget="_top" class="blockButton button button-block button-fb defaultText beCenter" 
-                    style="" on-tap="fbLogin()">
-                <i class="icon ion-social-facebook" style="position: absolute;left: 20px;"></i> Login with <strong>Facebook</strong>
-            </button>
-            <button class="blockButton button button-block button-g defaultText beCenter"
-                    style="" on-tap="gLogin(e)">
-                <i class="icon ion-social-googleplus" style="position: absolute;left: 20px;"></i>Login with <strong>Google+</strong>
-            </button>
-            
-            <div class="skipTxt"><button class="skipanchor button button-icon button-clear" on-tap="withoutLogin()">Skip Login</button></div>
+<ion-view>  
+    <ion-content class="bgcolor1" scroll="true">
+        <div class="imgBtn">
+        <div class="todoImg">
+            <img ng-src="images/logo.png" class="beCenter margin-top100 margin-bottom100">
+        </div>
+        <button taget="_top" class="blockButton button button-block button-fb defaultText beCenter" 
+                style="" on-tap="fbLogin()">
+            <i class="icon ion-social-facebook" style="position: absolute;left: 20px;"></i> Login with <strong>Facebook</strong>
+        </button>
+        <button class="blockButton button button-block button-g defaultText beCenter"
+                style="" on-tap="gLogin(e)">
+            <i class="icon ion-social-googleplus" style="position: absolute;left: 20px;"></i>Login with <strong>Google+</strong>
+        </button>
+        </div>
+
     </ion-content>
+
+    <div class="skipTxt">
+        <button class="skipanchor button button-icon button-clear" on-tap="withoutLogin()">Skip Login</button>
+    </div>
 </ion-view>

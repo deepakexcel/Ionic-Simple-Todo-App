@@ -5,16 +5,16 @@
         </button>
         <label class="crthead defaultText">
             <span side="left" class="bigLabel">
-                <span class="titlSpancmp" style="font-size: 18px; width:100%">Completed</span>
+                <span class="titlSpancmp" style="font-size: 18px; position: absolute;right: 45%;">Trash</span>
             </span>
         </label>
     </ion-nav-buttons>
-    <ion-nav-buttons side="right">
+<!--    <ion-nav-buttons side="right">
         
         <button style="padding-top:5px; color: #ffffff;" class="button button-clear "  on-tap="deleteRecord();">
             <i class="icon ion-android-delete hedIcn"></i> 
         </button>
-    </ion-nav-buttons>
+    </ion-nav-buttons>-->
 
     <!--header bar of add to do-->
     <ion-content class="has-my-bar">
@@ -25,9 +25,9 @@
                 <!--                <ion-item class="item-divider default" style="" ng-show="completedTask.length">
                                     <label class="left capital lineheight">Completed</label>
                                 </ion-item>-->
-                <ion-item ng-repeat="todoItem in completedTask = (todoList|filter:{done:true}) track by $index" 
+                <ion-item ng-repeat="todoItem in completedTask = (todoList|filter:{deleteStatus:true}) track by $index" 
                           class="defaultText default"
-                          on-hold="callEdit($index, todoItem)" ng-show="isCompletedVisible" >
+                          on-hold="callEdit($index, todoItem)" >
                     <div class="todo2day">
                         <ion-checkbox class="todayCheck setIcn left taskheight" style="border: none;" 
                                       ng-checked="todoItem.done" ng-model="todoItem.done" ng-change="completedRecord(todoItem, $index);
@@ -37,28 +37,16 @@
                         <!--<i class="todayCheck icon ion-android-checkbox-outline" style="color: rgb(173, 168, 168); font-size: 25px;" on-tap="todoItem.done" ng-change="completedRecord(todoItem, $index);"></i>-->
                         <div class="taskToday2 {{todoItem.completed}}">{{todoItem.title|titlecase}}</div> 
                         <!--<div class="beLabel" ng-hide="todoItem.parseStatus"><i class="clkIcon icon ion-ios-alarm-outline" style="margin-right: 2px; font-size: 20px;"></i><span class="beLabelSpn">{{todoItem.time|date:'dd- MMM- yyyy'}}, {{ todoItem.alarmTime|date:'h:mma '}}</span></div>-->
-                        <button class="btn_cls1" on-tap="deleteOneRecord(todoItem.position); aswmm=true">
+<!--                        <button class="btn_cls1" on-tap="deleteOneRecord(todoItem.position); aswmm=true">
                             <i class="icon ion-android-cancel" style="color:#B8B5B5; font-size: 19px;"></i>
-                        </button>
+                        </button>-->
 
                     </div>
 
                 </ion-item>
 
             </ion-list>
-<!--            <ion-list >
-                <ion-item ng-hide="completedTask.length" class="cntnttsk" >
-                    <div class="empty" >
-                        <div class='nothing'>There's nothing here! </div>
-                        <div ng-click="createTodo()" class='empty_div'>
-                            <button class="empty_btn button ion-plus " > 
-                            </button>
 
-                        </div>
-                        <div class="now">Add a new task now!</div>
-                    </div>
-                </ion-item>
-            </ion-list>-->
     </ion-content>
     <!--footer bar of add to do-->
     <ion-footer-bar align-title="left" class="bar-clear" ng-show="ifLoogedIn">

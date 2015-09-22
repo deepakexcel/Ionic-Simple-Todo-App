@@ -22,8 +22,10 @@ angular.module('app.controller', [])
                         $timeout(function () {
                             countBack = 0;
 //                            window.plugins.toast.hide();
-                        }, 1000);
+//                            window.plugins.toast.hide();
+                        }, 2000);
                     } else if (countBack == 2) {
+//                        window.plugins.toast.hide();
                         navigator.app.exitApp();
                         countBack = 0;
                     }
@@ -36,20 +38,36 @@ angular.module('app.controller', [])
                         Alertuser.alert("press back again to exit");
                         $timeout(function () {
                             countBack = 0;
-                        }, 1000);
+//                            window.plugins.toast.hide();
+                        }, 2000);
                     } else if (countBack == 2) {
                         navigator.app.exitApp();
+//                        window.plugins.toast.hide();
                         countBack = 0;
                     }
                 }
                 else {
 
                     navigator.app.backHistory();
+                    $ionicHistory.nextViewOptions({
+                                            disableBack: true
+                                        });
 
                 }
             }, 100);
 
-
+            $scope.cut = function (email) {
+                if(email){
+                if (email.length > 25) {
+                    var email2 = email.substr(0, 25);
+                    var email1 = email2 + '....';
+                    return email1;
+                }
+                else {
+                    return email;
+                }
+            }
+            }
             $scope.$on('$ionicView.enter', function () {
                 if (!$localStorage['Initializer']) {
                     $scope.profileList = true;
@@ -64,8 +82,9 @@ angular.module('app.controller', [])
                                 $scope.emailid = $localStorage["google_user"].email;
                             }
                         } else {
+                            var fbid = $localStorage["Initializer"];
                             $scope.loggedUser = $localStorage["loggedUsername"];
-                            $scope.userprofile = "images/facebookIcon.png";
+                            $scope.userprofile = "http://graph.facebook.com/"+fbid+"/picture?type=square";
                         }
                     }
                 } else {
@@ -77,10 +96,13 @@ angular.module('app.controller', [])
                                 $scope.emailid = $localStorage["google_user"].email;
                             } else {
                                 $scope.userprofile = "images/google.png"
+                                $scope.emailid = "anurag@excellencetechnologies.in"
                             }
                         } else {
+                            var fbid = $localStorage["Initializer"];
+                            console.log(fbid)
                             $scope.loggedUser = $localStorage["loggedUsername"];
-                            $scope.userprofile = "images/facebookIcon.png"
+                            $scope.userprofile = "http://graph.facebook.com/"+fbid+"/picture?type=square"
                         }
                     }
                 }
@@ -144,12 +166,9 @@ angular.module('app.controller', [])
 
             $scope.logout = function () {
                 $rootScope.searchbx = false;
-
-//                console.log($rootScope.searchbx);
                 $scope.abc = false;
                 $scope.profileList = true;
-//                $scope.userprofile = 'images/user_login.png';
-//                $scope.emailid = '';
+
 //                $scope.loggedUser = 'Not Logged in';
 //                 $localStorage.$reset();
                 console.log("logging out");
@@ -165,13 +184,13 @@ angular.module('app.controller', [])
                 delete $localStorage["todoTasks"];
                 delete $localStorage["google_user"];
                 delete $localStorage["Parse/F8TOhK8zoN69mY0OydaZBgVOcFT4xAxlLYegGFX2/installationId"];
-
+                ;
 
                 console.log("a");
 
                 $timeout(function () {
 
-                    $state.go('app.addTodo');
+                    $state.go("login")
                     $ionicLoading.hide();
                 }, 1000);
                 Alertuser.alert("Logging out..");

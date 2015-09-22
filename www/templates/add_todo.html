@@ -1,7 +1,7 @@
 <ion-view>
-<!--        <ion-nav-back-button class="white button-clear " style="margin-top: 6px; color: #ffffff;">
-                <i class="ion-android-arrow-back white"></i>
-            </ion-nav-back-button>-->
+    <!--        <ion-nav-back-button class="white button-clear " style="margin-top: 6px; color: #ffffff;">
+                    <i class="ion-android-arrow-back white"></i>
+                </ion-nav-back-button>-->
     <ion-nav-buttons side="left">
         <button style="padding-top:5px;color: #ffffff;" class="button button-icon button-clear ion-navicon " menu-toggle="left">
         </button>
@@ -18,13 +18,13 @@
 
     <ion-nav-buttons side="right">
         <button style="padding-top:5px; margin-right: 7px; color: #ffffff;" class="button button-icon button-clear ion-android-search" ng-hide="mode.searchbx" on-tap="searchToDo()">
-            
+
         </button>
         <button style="padding-top:5px; margin-right: 7px; color: #ffffff; font-size: 5px;" class="button button-icon button-clear ion-android-close" ng-show="mode.searchbx" on-tap="offsearch()">
-            
+
         </button>
         <button style="padding-top:5px; color: #ffffff;" class="button button-icon button-clear ion-android-delete"  on-tap="deleteRecord();">
-            
+
         </button>
     </ion-nav-buttons>
 
@@ -65,7 +65,7 @@
         </ion-list>
 
         <ion-list>
-            <ion-item class="item-divider default" style="" ng-show="isCompletedVisible">
+            <ion-item class="item-divider default" style="border: 1px solid lightgrey; margin-top: -4px;" ng-show="isCompletedVisible">
                 <label class="capital lineheight" style="text-align: center;">Completed</label>
                 <!--                <button class="button-clear ion-chevron-down" on-tap="showCompleted()"
                                         style="display:inline-block; float: right;">
@@ -73,7 +73,7 @@
                                 </button>-->
 
             </ion-item>
-            <ion-item ng-repeat="todoItem in completedTask = (todoList|filter:{done:true} |filter:mo.searchs) track by $index" 
+            <ion-item ng-repeat="todoItem in completedTask = (todoList| filter:{done:true } | filter:{deleteStatus:false }| filter:mo.searchs) track by $index" 
                       class="defaultText default"
                       ng-show="isCompletedVisible">
                 <div class="todo2day" >
@@ -99,9 +99,7 @@
         <h1 class="title">Title</h1>
         <div class="buttons" ng-click="createTodo()">
             <button class="create-btn button addcolor ion-plus-round " style="font-size:20px ; "> 
-
             </button>
-            <!--<img src="images/facebookIcon.png" alt=""/>-->
         </div>
     </ion-footer-bar>
     <!--</ion-view>-->

@@ -7,7 +7,7 @@
             <!--<ion-nav-bar class="bgcolor mybar no-border">-->
 
             <ion-nav-buttons side="left">
-                <button style="padding-top:5px;color: #ffffff;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
+                <button style="padding-top:5px;color: #ffffff; padding-left: 10px;" class="button button-icon button-clear ion-android-close " on-tap="gotoTask()">
                 </button>
                 <label class="crthead defaultText">
                     <span side="left" class="bigLabel">
@@ -20,7 +20,7 @@
             </ion-nav-buttons>
                 
             <ion-nav-buttons side="right">
-                <button style="padding-top:5px; padding-right: 15px; color: #ffffff; font-size: 14px;" class="button button-icon button-clear" on-tap="addTodo()">
+                <button style="padding-top:5px; padding-right: 15px; font-family: roboto; color: #ffffff; font-size: 12px;" class="button button-icon button-clear" on-tap="addTodo(); " ng-disabled="mdl.savedisable">
                     SAVE
                 </button>
                 </ion-nav-buttons>
@@ -32,14 +32,14 @@
     </ion-nav-view>-->
 
     <ion-content class="has-my-bar no-border" >
-        <form>
+        <form id="myForm">
         <ion-list class="crtList">
 
             <ion-item class="items bgcolor no-border txtItem">
                 <label class="txtbx item-input item-floating-label">
                     <span class="input-label" style="color: 8dbee0; margin-bottom: 20px; font-size: 18px;">Task Name</span>
-                    <textarea placeholder="Task Name" id="txtbx" ng-model="mytask.title" ng-keydown="go($event)" cols="10" rows="2" maxlength="100" style="height: {{high}}" on-tap="setHight()" ng-blur="setHightBlur()" ></textarea>
-                    <div class="lineDiv"></div>
+                    <textarea wrap='hard' placeholder="Task Name" id="txtbx" ng-model="mytask.title" ng-keydown="go($event,mytask.title)" cols="10" rows="2" style="height: {{high}}" on-tap="setHight()" ng-blur="setHightBlur()" ></textarea>
+                    <div class="lineDiv" style="background-color: {{lineClr}}" ></div>
                 </label>
                 
             </ion-item>
@@ -57,31 +57,38 @@
                                 style="color:#888a89;position: absolute;padding-right:  20px; padding-top: 10px;">
                         </button>
                         <ul style="margin-left: 40px;" on-tap="blank();">
-                            <li class="current-menu-item"><a id="dateBtn">{{mydate.title}}</a>
-                                <ul ng-show="reminderTime.isDateDisplaying" style="border-top:1px solid black;">
+                            <li class="current-menu-item"><a id="dateBtn" class="mydatetime">{{mydate.title}}</a>
+                                <div class="liLine"></div>
+                                <ul ng-show="reminderTime.isDateDisplaying" class="datedrop" style="">
                                     <li><a on-tap="showDate(myDates[0].title,$event)">{{myDates[0].title}}</a></li>
                                     <li><a on-tap="showDate(myDates[1].title,$event)">{{myDates[1].title}}</a></li>
-                                    <li class="grey"><a on-tap="showDate(myDates[2].title, $event)" >{{myDates[2].title}}</a></li>
+                                    <li class="grey" style="border-bottom: none;"><a on-tap="showDate(myDates[2].title, $event)" >{{myDates[2].title}}</a></li>
                                 </ul>
                                 <!--<ul><li><input type="text" ng-model="model.date" disabled=""></li></ul>-->
                             </li>
-                            <li><a id="timeBtn">{{mytime.title}}</a>
-                                <ul ng-show="reminderTime.isTimeDisplaying" style="border-top:1px solid black;">
+                            <li><a id="timeBtn" class="mydatetime">{{mytime.title}}</a>
+                                <div class="liLine"></div>
+                                <ul ng-show="reminderTime.isTimeDisplaying" class="timedrop" style="">
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[0].title)"><span class="time">{{myTimes[0].title}}</span><span class="tiny grey">{{myTimes[0].dtime}}</span></a></li>
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[1].title)"><span class="time">{{myTimes[1].title}}</span><span class="tiny">{{myTimes[1].dtime}}</span></a></li>
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[2].title)"><span class="time">{{myTimes[2].title}}</span><span class="tiny">{{myTimes[2].dtime}}</span></a></li>
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[3].title)"><span class="time">{{myTimes[3].title}}</span><span class="tiny">{{myTimes[3].dtime}}</span></a></li>
-                                    <li class="grey pad-bot7"><a on-tap="showTime($event,myTimes[4].title)"><span class="time">{{myTimes[4].title}}</span></a></li>
+                                    <li class="grey pad-bot7" style="border-bottom: none;"><a on-tap="showTime($event,myTimes[4].title);"><span class="time">{{myTimes[4].title}}</span></a></li>
                                 </ul>
                                 <!--<ul><li><input type="text" ng-model="model.time" disabled=""></li></ul>-->
                             </li>
                         </ul>
-                        <button class="button button-icon icon-left placeholder-icon ion-close-circled" 
-                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:6px;" on-tap="noReminder()">
+                        
+                        <button class="button button-clear " 
+                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:-5px;margin-top: 7px;" on-tap="noReminder()">
+                            <i class="ion-android-cancel" style="color:#B8B5B5; font-size: 25px;"></i>
                         </button>
                     </nav>
+                    
                 </div>
+               
             </ion-item>
+             <div class="shdoDiv"></div>
 <!--            <ion-item class="no-border">
                 <div class="block">
                     <button class="white no-border button bgcolor" on-tap="addTodo()">Create</button>

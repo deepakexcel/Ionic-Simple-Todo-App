@@ -18,7 +18,7 @@
     </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
-        <button style="padding-top:12px; padding-right: 15px; color: #ffffff;" class="button button-icon button-clear ion-android-done" on-tap="editRecordd();">
+        <button style="padding-top:2px; padding-right: 15px; color: #ffffff;" class="button button-icon button-clear ion-android-done" on-tap="editRecordd();">
 
         </button>
     </ion-nav-buttons>
@@ -33,31 +33,39 @@
                 <label class="txtbx item-input item-floating-label" >
                     <span class="input-label" style="color: #AACFEC; margin-bottom: 15px;" >Task Name</span>
 
-                    <textarea placeholder="Task Name" id="txtbxx" ng-model="mytask.title" ng-keydown="goedt($event)" cols="10" rows="2" maxlength="100" style="height: {{high}}"  ></textarea>
+                    <textarea placeholder="Task Name" id="txtbxx" ng-model="mytask.title" ng-keydown="goedt($event)" cols="10" rows="2" style="height: {{high}}"  ></textarea>
                 <div class="lineDiv"></div>
                 </label>
 
             </ion-item>
 
 
-            <ion-item>
+            <ion-item class="cntnttsk">
                 <div class="myDiv no-border">
-
-                    <nav class="" close-submenu>
-                        <button class="button button-icon icon-left placeholder-icon ion-clock" 
+                    <label >
+                        <button class="button button-icon " 
+                                style="color:#ccc;" on-tap="showReminder=true;" ng-hide="showReminder">
+                            <i class="icon placeholder-icon ion-android-notifications" style="color:#888a89;"></i> <span class="remind">Remind me</span>
+                        </button>
+                    </label>
+                    <nav ng-show="showReminder" class="" close-submenu>
+                        <button class="button button-icon icon-left placeholder-icon btnbell" 
                                 style="color:#888a89;position: absolute;padding-right:  20px;">
+                            <i class="ion-android-notifications" style="font-size: 32px;"></i>
                         </button>
                         <ul style="margin-left: 40px;" on-tap="blank();">
-                            <li class="current-menu-item"><a id="dateBtn">{{mydate.title}}</a>
-                                <ul ng-show="reminderTime.isDateDisplaying" style="border-top:1px solid black;">
+                            <li class="current-menu-item"><a id="dateBtn" class="mydatetime">{{mydate.title}}</a>
+                                <div class="liLine"></div>
+                                <ul ng-show="reminderTime.isDateDisplaying" class="datedrop" style="">
                                     <li><a on-tap="showDate(myDates[0].title,$event)">{{myDates[0].title}}</a></li>
                                     <li><a on-tap="showDate(myDates[1].title,$event)">{{myDates[1].title}}</a></li>
                                     <li class="grey"><a on-tap="showDate(myDates[2].title, $event)" >{{myDates[2].title}}</a></li>
                                 </ul>
                                 <!--<ul><li><input type="text" ng-model="model.date" disabled=""></li></ul>-->
                             </li>
-                            <li class="current-menu-item"><a id="timeBtn">{{mytime.title}}</a>
-                                <ul ng-show="reminderTime.isTimeDisplaying" style="border-top:1px solid black;">
+                            <li class="current-menu-item"><a id="timeBtn" class="mydatetime">{{mytime.title}}</a>
+                                <div class="liLine"></div>
+                                <ul ng-show="reminderTime.isTimeDisplaying" style="">
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[0].title)"><span class="time">{{myTimes[0].title}}</span><span class="tiny grey">{{myTimes[0].dtime}}</span></a></li>
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[1].title)"><span class="time">{{myTimes[1].title}}</span><span class="tiny">{{myTimes[1].dtime}}</span></a></li>
                                     <li class="pad-bot7"><a on-tap="showTime($event,myTimes[2].title)"><span class="time">{{myTimes[2].title}}</span><span class="tiny">{{myTimes[2].dtime}}</span></a></li>
@@ -67,7 +75,10 @@
                                 <!--<ul><li><input type="text" ng-model="model.time" disabled=""></li></ul>-->
                             </li>
                         </ul>
-                        
+                        <button class="button button-clear " 
+                                style="color:#ccc; padding-left:0px;padding-right:0px;position:absolute;right:-5px;margin-top: 7px;" on-tap="noReminder()">
+                            <i class="ion-android-cancel" style="color:#B8B5B5; font-size: 25px;"></i>
+                        </button>
                     </nav>
                 </div>
             </ion-item>

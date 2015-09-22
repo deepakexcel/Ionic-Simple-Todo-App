@@ -182,10 +182,16 @@
     cursor: pointer;
 }
 
-.datetimepicker table tr td.past,
-.datetimepicker table tr td.future {
-    color: #999999;
+
+.datetimepicker table tr td.past, .datetimepicker table tr td.future {
+    color: #999999;       
 }
+.past{
+    pointer-events: none !important;
+       cursor: default!important;
+       /*color:red!important;*/
+}
+
 
 .datetimepicker table tr td.disabled,
 .datetimepicker table tr td.disabled:hover {

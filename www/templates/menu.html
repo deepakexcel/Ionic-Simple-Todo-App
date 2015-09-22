@@ -4,7 +4,7 @@
         <ion-nav-bar class="bgcolor mybar">
             <!--<ion-nav-bar class="bgcolor mybar">-->
             <ion-nav-back-button class="white button-clear " style="margin-top: 6px;">
-                <i class="ion-android-arrow-back white"></i>
+                <i class="ion-android-arrow-back white" style="font-size: 25px; margin-right: -5px;"></i>
             </ion-nav-back-button>
             <!--</ion-nav-bar>-->
             <ion-nav-buttons side="left">
@@ -38,7 +38,7 @@
                         <img class="userIcon1" ng-src="{{userprofile}}">
                         <div class="userdiv">
                             <div><span class="menuTxtt">{{loggedUser}}</span></div>
-                            <div><span class="menuTxttt">{{emailid}}</span></div>
+                            <div class="emailmenu"><span class="menuTxttt">{{cut(emailid)}}</span></div>
                         </div>
                     </div>
 
@@ -89,7 +89,7 @@
                 </ion-item>
                 <!--</button>-->
                 <!--<button  class="button button-clear menucntnt cntnttsk menuBtn1"ng-disabled="abc">-->
-                <ion-item  nav-clear menu-close href class="menucntnt cntnttsk"  on-tap="deleteRecord();">
+                <ion-item  nav-clear menu-close href= "#/app/trash" class="menucntnt cntnttsk" >
                     <div class="menuOpt">
                         <i class="menuIcon icon ion-android-delete " ></i> 
                         <span class="menuTxt">Trash</span>

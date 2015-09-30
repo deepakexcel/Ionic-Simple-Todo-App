@@ -181,15 +181,10 @@ angular.module('edit.controller', ["angular-datepicker"])
                     $scope.showReminder = true;
                     $scope.mytime.title = prvTime;
                 }
-                console.log($scope.mytask.title);
-                if ($scope.mytask.title.length > 20) {
-                    $scope.high = "50px";
-                } else if ($scope.mytask.title.length > 45) {
-                    $scope.high = "70px";
-                } else {
-                    $scope.high = "30px";
-                }
+                
                 $scope.curTime = new Date().getTime();
+                var myDate = pevDate;
+                var myTime = prvTime;
                 //alert($scope.todoAlarm.getDate() + "" + $scope.alarmTime.getHours());
 
                 var tags = [];
@@ -401,6 +396,7 @@ angular.module('edit.controller', ["angular-datepicker"])
                     $scope.model.time = '';
                     $scope.pickTime1();
                 }
+                
             };
             $scope.reminderTime = {};
             $scope.reminderTime.isTimeDisplaying = false;
@@ -434,9 +430,28 @@ angular.module('edit.controller', ["angular-datepicker"])
             $scope.editRecordd = function () {
                 console.log($scope.mytask.title);
                 console.log(parseInt($scope.todoAlarm));
+                console.log("Todo Alarm : - "+ $scope.todoAlarm);
+                console.log("Dates :-  "+item_date);
+                console.log(new Date(item_date).getTime());
+                console.log("timess :-  "+item_time);
                 console.log($scope.alarmTime);
                 console.log("hiiiiii");
                 console.log("hello");
+                
+                if(!$scope.alarmTime){
+                    console.log("Not Time");
+                }
+                if(!$scope.todoAlarm){
+                    console.log("Not Date");
+                    if(item_date){
+                        $scope.todoAlarm = new Date(item_date).getTime();
+                    }else{
+                        $scope.todoAlarm = "";
+                    }
+                }
+                
+                
+                 console.log("Todo Alarmhrtsfhtf : - "+ $scope.todoAlarm);
                 if (!$scope.mytask.title || $scope.mytask.title === " " || $scope.mytask.title === "" || $scope.mytask.title.length === 0) {
                     if (window.cordova) {
                         Alertuser.alert("Please add the task");

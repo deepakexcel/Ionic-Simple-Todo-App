@@ -92,13 +92,13 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 
 //                if (mytodoobj.deleteStatus == true) {
 //                    mytrashlist.push(mytodoobj)
-                console.log("trash 1");
+//                console.log("trash 1");
 //                } else {
                 mytodolist.push(mytodoobj);
-                console.log("ToDo 1");
+//                console.log("ToDo 1");
 //                }
 //                mytodolist.unshift(mytodoobj);
-                console.log("Check UnShift");
+//                console.log("Check UnShift");
 //                    console.log(mytodoobj);
 //                console.log(mytodolist);
             }
@@ -295,6 +295,11 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 
     //call when checked/unchecked the tasks
     $scope.completedRecord = function (item, index) {
+            //console.log(item.position);
+            if (window.cordova) {
+                    cordova.plugins.notification.local.cancel(item.position, function () {
+                    });
+                }
         console.log($localStorage["todoTasks"]);
         var localTasks = $localStorage["todoTasks"];
         console.log(localTasks);
@@ -423,14 +428,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
     //Deleteing one or mor than one tasks 
     $rootScope.deleteRecord = function () {
 
-//        var j = 0;
-//        if ($localStorage["trashTasks"]) {
-//            var n = $localStorage["trashTasks"].length;
-//            var localTrash = $localStorage["trashTasks"];
-//        } else {
-//            var n = 0;
-//            var localTrash = [];
-//        }
         var localTasks = $localStorage["todoTasks"];
 
         var localTask1 = [];
@@ -700,6 +697,10 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 
     //function for editing data (it redirect on the edit page with data)
     $scope.editing = function (item, date, time) {
+        console.log("Controller ");
+        console.log(date);
+        console.log(time);
+        
         console.log(item);
 //        var dt = $filter('date')(new Date(date), 'dd - MM - yyyy');
 //        var tmm = new Date(time).toLocaleTimeString();

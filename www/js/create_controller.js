@@ -509,7 +509,7 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.high = "30px";
 
             $scope.go = function (event, task) {
-                console.log(event)
+//                console.log(event);
 //                var frm = angular.element(document.getElementById("myForm").submit());
 //                console.log(frm);
 //                if ($scope.mytask.title) {
@@ -521,11 +521,11 @@ angular.module('create.controller', ["angular-datepicker"])
 //                }
 //                if(frm){
                 var text = angular.element(document.getElementById('txtbx'));
-                console.log(text[0].value);
+//                console.log(text[0].value);
 //            }
-                console.log(task);
+//                console.log(task);
                 var key = event.keyCode;
-                console.log(key);
+//                console.log(key);
                 if (key == 13) {
                     $scope.high = "50px";
                 }
@@ -564,7 +564,6 @@ angular.module('create.controller', ["angular-datepicker"])
 //                            $scope.mdl.savedisable = false;
                             return false;
                         }
-
                     }
                 }
 
@@ -665,7 +664,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                 console.log(todoObj);
 //                                Alertuser.saveAlert("Saved..");
                                 var storedTodoTasks = $localStorage['todoTasks'];
-                                storedTodoTasks.push(todoObj);
+                                storedTodoTasks.unshift(todoObj);
 
 
                                 console.log("dnkcvdnskvnkjj");
@@ -704,9 +703,9 @@ angular.module('create.controller', ["angular-datepicker"])
                                                         text: todoObj.title,
                                                         title: "",
                                                         autoCancel: true,
-                                                        
-//                                                icon: 'ion-android-notifications',
-//                                                icon: 'ion-android-notifications',
+//                                                        smallIcon: "file://images/ic_stat_social_notifications_none.png",
+//                                                        smallIcon: "rec://ic_stat_social_notifications_none",
+//                                                        icon: 'ion-android-notifications',
                                                         at: finalTime,
                                                     }
                                                     notificationArray.push(notificationObj)
@@ -753,7 +752,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                             storedTodoTasks = $localStorage['todoTasks'];
                                         }
                                         console.log(storedTodoTasks.length);
-                                        storedTodoTasks.push(todoObj);
+                                        storedTodoTasks.unshift(todoObj);
                                         $localStorage['todoTasks'] = storedTodoTasks;
                                         $state.go('app.addTodo');
                                         $ionicHistory.nextViewOptions({
@@ -781,9 +780,8 @@ angular.module('create.controller', ["angular-datepicker"])
                                                 text: todoObj.title,
                                                 title: "",
                                                 autoCancel: true,
-                                                
-//                                                icon: 'ion-android-notifications',
-//                                                icon: 'ion-android-notifications',
+//                                                smallIcon: "file://images/ic_stat_social_notifications_none.png",
+//                                                smallIcon: "rec://ic_stat_social_notifications_none",
                                                 at: finalTime,
                                             }
                                             notificationArray.push(notificationObj)
@@ -846,7 +844,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                     storedTodoTasks = $localStorage['todoTasks'];
                                 }
                                 console.log(storedTodoTasks.length);
-                                storedTodoTasks.push(todoObj);
+                                storedTodoTasks.unshift(todoObj);
                                 $localStorage['todoTasks'] = storedTodoTasks;
 //                                alert("go 2")
                                 $state.go('app.addTodo');
@@ -877,9 +875,8 @@ angular.module('create.controller', ["angular-datepicker"])
                                         text: todoObj.title,
                                         title: "",
                                         autoCancel: true,
-                                        
-//                                                icon: 'ion-android-notifications',
-//                                                icon: 'ion-android-notifications',
+//                                        smallIcon: "file://images/ic_stat_social_notifications_none.png",
+//                                        smallIcon: "rec://ic_stat_social_notifications_none",
                                         at: finalTime,
                                     }
                                     notificationArray.push(notificationObj);
@@ -930,7 +927,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                             storedTodoTasks = $localStorage['todoTasks'];
                                         }
 //                                        console.log(storedTodoTasks.length);
-                                        storedTodoTasks.push(todoObj);
+                                        storedTodoTasks.unshift(todoObj);
                                         $localStorage['todoTasks'] = storedTodoTasks;
 //                                alert("go 2")
                                         $state.go('app.addTodo');
@@ -957,8 +954,10 @@ angular.module('create.controller', ["angular-datepicker"])
                                                 text: todoObj.title,
                                                 title: "",
                                                 autoCancel: true,
+//                                                smallIcon: "file://images/ic_stat_social_notifications_none.png",
+//                                                smallIcon: "rec://ic_stat_social_notifications_none",
                                                 at: finalTime
-                                            }
+                                            };
 
                                             notificationArray.push(notificationObj);
                                            

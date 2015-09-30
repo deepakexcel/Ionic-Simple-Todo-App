@@ -1,5 +1,5 @@
 
-angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.controller', 'trash.controller', 'edit.controller', 'ui.bootstrap.datetimepicker', 'fb.controller', 'app.controller', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filters', 'ngStorage', 'angular-datepicker', 'GoogleLoginService', 'timestorage'])
+angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.controller', 'edit.controller', 'ui.bootstrap.datetimepicker', 'fb.controller', 'app.controller', 'starter.controllers', 'starter.services', 'starter.directives', 'starter.filters', 'ngStorage', 'angular-datepicker', 'GoogleLoginService', 'timestorage'])
         .run(function ($ionicPlatform, $rootScope, $cordovaStatusbar, $state, $cordovaNetwork, $location, $localStorage, $interval, $timeout) {
             $ionicPlatform.ready(function () {
 //                console.log(window.cordova.platformId);
@@ -48,6 +48,21 @@ angular.module('starter', ['ionic', 'ngCordova', 'offline.controller', 'create.c
 //                    console.log(id.text);
                     var notifyId = id.id;
                     var w = window.plugin.notification.local.cancel(notifyId);
+                    var tasks = $localStorage["todoTasks"];
+                        console.log("Tasks = ");
+                        console.log(tasks);
+                        for(var i=0;i<tasks.length; i++){
+                            if(tasks[i].position == notifyId){
+                                console.log("Find Task");
+                                console.log(tasks[i]);
+                                var dat = new Date(tasks[i].time);
+                                var tim = new Date(tasks[i].alarmTime);
+                                console.log("DAte :- "+ dat +"Time :- " + tim);
+                               $state.go("app.editTodo", {a: tasks[i].title, b: dat, c: tim, d: tasks[i].position})
+                            }
+                        }
+                        
+                        //$state.go("app.editTodo");
 //                    console.log(w);
                 });
                 cordova.plugins.notification.local.on("clear", function (id, state, json) {

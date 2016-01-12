@@ -5,13 +5,9 @@ angular.module('edit.controller', ["angular-datepicker"])
             var item_date = $stateParams.b;
             var item_time = $stateParams.c;
             var item_position = $stateParams.d;
-//            console.log(item_date);
-//            console.log(item_time);
+
             $scope.mytask = {};
-//            console.log($stateParams.a);
-//            $scope.saveee = function () {
-//                alert($scope.model.title);
-//            };
+
             $scope.datePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
@@ -154,9 +150,6 @@ angular.module('edit.controller', ["angular-datepicker"])
                 }
             };
 
-//            if (window.cordova && !$cordovaNetwork.isOnline()) {
-//                $state.go('offline');
-//            }
 
             $scope.$on('$ionicView.enter', function () {
 
@@ -333,10 +326,6 @@ angular.module('edit.controller', ["angular-datepicker"])
                                 $scope.mytime.title = time;
                                 console.log(time);
                                 $scope.alarmTime = $scope.tmp.newDate.getTime();
-//                                console.log("time");
-//                                console.log("TimePopup");
-//                                console.log($scope.alarmTime);
-//                                console.log(new Date($scope.alarmTime));
                             }
                         }
                     ]

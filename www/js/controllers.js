@@ -90,20 +90,10 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                     mytodoobj.deleteStatus = false;
                 }
 
-//                if (mytodoobj.deleteStatus == true) {
-//                    mytrashlist.push(mytodoobj)
-//                console.log("trash 1");
-//                } else {
                 mytodolist.push(mytodoobj);
-//                console.log("ToDo 1");
-//                }
-//                mytodolist.unshift(mytodoobj);
-//                console.log("Check UnShift");
-//                    console.log(mytodoobj);
-//                console.log(mytodolist);
             }
             $scope.todoList = mytodolist;
-//            $scope.trashList = mytrashlist;
+
         }
     };
 
@@ -160,16 +150,10 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                                 } else {
                                     mytodoobj.deleteStatus = false;
                                 }
-//                                if (mytodoobj.deleteStatus == true) {
-//                                    mytrashlist.push(mytodoobj)
-//                                    console.log("trash 2");
-//                                } else {
                                 mytodolist.push(mytodoobj);
                                 console.log("ToDo 2");
-//                                }
                             }
                             $ionicLoading.hide();
-//                            $localStorage['trashTasks'] = mytrashlist
                             $localStorage['todoTasks'] = mytodolist;
                             console.log(mytodolist[0].done);
                             $scope.processLocalStorage($localStorage['todoTasks']);
@@ -193,11 +177,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                                 }
                                 $scope.emptyshow = true;
                                 $scope.navTitle = true;
-//                                        $scope.cmplt = false;
                             } else {
                                 $scope.emptyshow = false;
                                 $scope.navTitle = false;
-//                                        $scope.cmplt = true;
                                 $scope.isCompletedVisible = false;
                             }
                         }
@@ -244,12 +226,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
     };
 
     self.checkLocalDone = function () {
-//                if($localStorage["todoTasks"]){
         var count = 0;
         var localTasks = [];
         localTasks = $localStorage["todoTasks"];
-//        console.log($localStorage["todoTasks"]);
-//        console.log(localTasks);
         for (var i = 0; i < $localStorage["todoTasks"].length; i++) {
             if (localTasks[i].done === true && localTasks[i].deleteStatus == false) {
                 count = count + 1;
@@ -257,14 +236,12 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
             }
         }
         if (count > 0) {
-//                    alert("done found")
             $scope.isCompletedVisible = true;
             $scope.cmplt = false;
         } else {
             $scope.isCompletedVisible = false;
             $scope.cmplt = true;
         }
-//            }
     };
     $scope.search = function (x, data) {
         for (var i = 0; i < data.length; i++) {
@@ -412,11 +389,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
         searchbx: ''
     }
     $scope.searchToDo = function () {
-//        focus('search');
         $rootScope.mode.searchbx = true;
     };
     $scope.offsearch = function () {
-//        root.searchbx=false;
         $rootScope.mode.searchbx = false;
         $scope.mo.searchs = '';
     };
@@ -439,17 +414,12 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                     });
                 }
                 localTasks[i].deleteStatus = true;
-//                console.log(localTasks[i].deleteStatus);
                 localTask1[i] = localTasks[i];
-//                console.log(localTrash[n].deleteStatus)
-//                n++;
                 continue;
             } else {
                 localTask1[i] = localTasks[i];
-//                j++;
             }
         }
-//        $localStorage["trashTasks"] = localTrash;
         $localStorage["todoTasks"] = localTask1;
         self.checkLocalDone();
         self.checkLocalEmpty();
@@ -468,24 +438,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                         for (var i = 0; i < result.length; i++) {
                             var objpos = result[i].get("position");
                             var objstatus = result[i].get("done");
-//                            var trashlist = [];
-//                            var trashobj = {};
                             if (objstatus === true) {
-//                                trashobj.userID = $localStorage["Initializer"]
-//                                trashobj.time = result[i].get("time");
-//                                trashobj.alarmTime = result[i].get("alarmTime");
-//                                trashobj.parseStatus = result[i].get("parseStatus");
-//                                trashobj.title = result[i].get("todo_title");
-//                                trashobj.done = result[i].get("done");
-//                                trashobj.position = result[i].get("position");
-//                                trashlist.push(trashobj);
-//                                
-//                                var settrashList = $q.when(ConnectParse.trashSave(trashobj));
-//                                console.log(settrashList);
-//                                settrashList.then(
-//                                        function (result) {
-//                                            console.log(result);
-//                                        })
                                 newIndex = i;
                                 console.log(newIndex);
                                 var deleteRecord = $q.when(ConnectParse.deleteRecord(result[i]));
@@ -501,13 +454,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                     else {
                         console.log("No records found");
                     }
-//                            $scope.refreshMe();
-//                            $ionicLoading.hide();
-//                            Alertuser.alert("record deleted");
                 },
                 function (error) {
                     $ionicLoading.hide();
-//                            Alertuser.alert(error);
                     console.log(error);
                 }
         );
@@ -523,13 +472,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 //            alert("done"+item_pos);
             });
         }
-//        if ($localStorage["trashTasks"]) {
-//            var n = $localStorage["trashTasks"].length;
-//            var localTrash = $localStorage["trashTasks"];
-//        } else {
-//            var n = 0;
-//            var localTrash = [];
-//        }
         var localTasks = $localStorage["todoTasks"];
         var j = 0;
         var localTask2 = [];
@@ -538,11 +480,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
             if (localTasks[i].done === true && localTasks[i].position === item_pos) {
                 localTasks[i].deleteStatus = true;
                 localTask2[i] = localTasks[i];
-//                n++;
                 continue;
             } else {
                 localTask2[i] = localTasks[i];
-//                j++;
             }
         }
 //        $localStorage["trashTasks"] = localTrash;
@@ -650,8 +590,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                                 }
                             }
                         }
-                        //reload
-                        //$state.go($state.current, {}, {reload: true});
                     }
                     else {
                         for (var i = 0; i < result.length; i++) {
@@ -679,8 +617,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                                 }
                             }
                         }
-                        //reload
-                        //$state.go($state.current, {}, {reload: true});
                     }
                 },
                 function (error) {
@@ -702,15 +638,9 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
         console.log(time);
         
         console.log(item);
-//        var dt = $filter('date')(new Date(date), 'dd - MM - yyyy');
-//        var tmm = new Date(time).toLocaleTimeString();
-//        var tm = $filter('date')(new Date(time), 'hh:mm a');
         var dt = new Date(date);
         var tm = new Date(time);
         console.log(tm);
-//        console.log(tmm);
-//        var dt = new Date(date).getDate() + " - " + new Date(date).getMonth() + " - " + new Date(date).getUTCFullYear();
-//        var tm = new Date(time).getHours() + ":" + new Date(time).getMinutes()+" "+new Date(time).getMinutes();
         console.log(dt);
         console.log(tm);
         var itemss = $localStorage["todoTasks"];
@@ -816,12 +746,8 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
                                 } else {
                                     mytodoobj.deleteStatus = false;
                                 }
-//                                if (mytodoobj.deleteStatus == true) {
-//                                    mytrashlist.push(mytodoobj);
-//                                } else {
                                 mytodolist.push(mytodoobj);
                                 console.log("13");
-//                                }
                             }
 //                            $localStorage['trashTasks'] = mytrashlist;
                             $localStorage['todoTasks'] = mytodolist;
@@ -852,7 +778,6 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
             $scope.$broadcast('scroll.refreshComplete');
             $scope.processLocalStorage($localStorage['todoTasks']);
         }
-//        console.log($localStorage['todoTasks']);
     };
 
     $scope.createTodo = function () {

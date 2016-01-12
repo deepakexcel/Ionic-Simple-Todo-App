@@ -15,20 +15,9 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
-    "cordova-plugin-splashscreen",
-    "com.ionic.keyboard",
-    "cordova-plugin-whitelist",
-    {
-      "locator": "/var/www/html/Facebook_Plugin",
-      "id": "com.phonegap.plugins.facebookconnect"
-    }
+    
   ],
   "cordovaPlatforms": [
-    {
-      "platform": "android",
-      "locator": "browser"
-    }
+    
   ]
 }

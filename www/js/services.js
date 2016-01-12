@@ -36,11 +36,6 @@ angular.module('starter.services', [])
                 console.log(todoObj);
 //                var ToDoObject1 = Parse.Object.extend("ToDoObject1");
                 var parseObj = new FBAppUser();
-//                parseObj.set("fbid", parseInt(todoObj.id));
-//                parseObj.set("fname", String(todoObj.fname));
-//                parseObj.set("lname", String(todoObj.lname));
-//                parseObj.set("gender", String(todoObj.gender));
-//                parseObj.set("profile", String(todoObj.profile));
                 parseObj.set("fbid", parseInt(todoObj.id));
                 parseObj.set("fname", String(todoObj.fname));
                 parseObj.set("lname", String(todoObj.lname));
@@ -358,66 +353,6 @@ angular.module('starter.services', [])
             };
 
 
-
-//            service.update = function (parseObj, toUpdateField, toUpdateobj) {
-//                console.log("UPDATE SERVICE CALLED");
-//                console.log(parseObj);
-//                console.log(toUpdateField);
-//                console.log(toUpdateobj);
-//                var promiseObject = $q.defer();
-//                var query = new Parse.Query(ToDoObject);
-//                query.equalTo("position", toUpdateField);
-//                query.find({
-//                    success: function (results) {
-//                        console.log(results);
-//                        promiseObject.resolve(results);
-//                        console.log("rec exist");
-//                        console.log(results);
-//                        parseObj.save(null, {
-//                            success: function (data) {
-////                                parseObj.set("todo_title", "");
-//                                   parseObj.set("userID", toUpdateobj.userID)
-//                                parseObj.set("todo_title", toUpdateobj.title);
-//                                parseObj.set("parseStatus", toUpdateobj.parseStatus);
-//                                parseObj.set("done", toUpdateobj.done);
-//                                parseObj.set("time", toUpdateobj.time);
-//                                parseObj.set("alarmTime", toUpdateobj.alarmTime);
-//                                parseObj.set("position", toUpdateobj.position);
-//                                console.log("Task Updated...");
-//
-//                                parseObj.save();
-//                                promiseObject.resolve(data);
-//                            },
-//                            error: function (data, error) {
-//                                promiseObject.reject(error.message);
-//                            }
-//                        });
-//                    },
-//                    error: function (error) {
-//                        promiseObject.reject(error.message);
-//                        console.log("rec not exist");
-//                        console.log(error);
-//                        console.log(error.message);
-//
-//                    }
-//                });
-////                return promiseObject.promise;
-////                var toUpdateValue = toUpdateobj.title;
-////                var promiseObject = $q.defer();
-////                parseObj.save(null, {
-////                    success: function (data) {
-////                        
-////                        // Execute any logic that should take place after the object is saved.
-////                        parseObj.set(toUpdateField, toUpdateValue);
-////                        parseObj.save();
-////                        promiseObject.resolve(data);
-////                    },
-////                    error: function (data, error) {
-////                        promiseObject.reject(error.message);
-////                    }
-////                });
-//                return promiseObject.promise;
-//            };
             service.complete = function (parseObj, toUpdateField, doneStatus) {
                 console.log(parseObj);
                 console.log(toUpdateField);

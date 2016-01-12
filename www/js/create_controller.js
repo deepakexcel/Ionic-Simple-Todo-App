@@ -5,14 +5,12 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.datePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
-                    //alert(e);
                     // do something when the picker closes   
                 }
             };
             $scope.TimePickerOptions = {
                 format: 'dd-mm-yyyy', // ISO formatted date
                 onClose: function (e) {
-                    //alert(e);
                     // do something when the picker closes   
                 }
             };
@@ -147,54 +145,6 @@ angular.module('create.controller', ["angular-datepicker"])
                     }
                 }
             };
-
-//            if (window.cordova && !$cordovaNetwork.isOnline()) {
-//                $state.go('offline');
-//            }
-//            $scope.defaultTime = function () {
-//                console.log("time adjusted");
-//                var d = new Date();
-//                var tdate = d.getDate();
-//                d.setDate(tdate);
-//                $scope.todoAlarm = d.getTime();
-//                var t = d.getHours();
-//                if (t >= 20 && t < 23) {
-//                    d.setDate(tdate + 1);
-//                    $scope.todoAlarm = d.getTime();
-//                    $scope.mydate = $scope.myDates[1];
-//                    $scope.mytime = $scope.myTimes[0];
-//                }
-//                else if (t >= 17 && t < 20) {
-//                    $scope.mytime = $scope.myTimes[3];
-//                    d.setHours(20);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t >= 13 && t < 17) {
-//                    $scope.mytime = $scope.myTimes[2];
-//                    d.setHours(17);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t >= 9 && t < 13) {
-//                    $scope.mytime = $scope.myTimes[1];
-//                    d.setHours(13);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//
-//                }
-//                else if (t > 0 && t < 9) {
-//                    $scope.mytime = $scope.myTimes[0];
-//                    d.setHours(9);
-//                    d.setMinutes(0);
-//                    $scope.alarmTime = d.getTime();
-//                }
-//
-//                // end of curTime
-//
-//            };
 
             $scope.mdl = {}
             $scope.$on('$ionicView.enter', function () {
@@ -509,21 +459,7 @@ angular.module('create.controller', ["angular-datepicker"])
             $scope.high = "30px";
 
             $scope.go = function (event, task) {
-//                console.log(event);
-//                var frm = angular.element(document.getElementById("myForm").submit());
-//                console.log(frm);
-//                if ($scope.mytask.title) {
-//                    if ($scope.mytask.title.length > 40) {
-//                        $scope.high = "50px";
-//                    } else {
-//                        $scope.high = "30px";
-//                    }
-//                }
-//                if(frm){
                 var text = angular.element(document.getElementById('txtbx'));
-//                console.log(text[0].value);
-//            }
-//                console.log(task);
                 var key = event.keyCode;
 //                console.log(key);
                 if (key == 13) {
@@ -629,38 +565,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                 }
                                 todoObj.completed = todostatus[todoObj.done];
                                 todoObj.position = newPos;
-                                //tags of user
-//                                var tempTags = [];
-//                                var selectedTags = "";
-//                                for (var i = 0; i < $scope.userPreTags.length; i++) {
-//                                    if ($scope.userPreTags[i].selected === true) {
-//                                        tempTags.push($scope.userPreTags[i].title);
-//                                    }
-//                                }
-//                                for (var i = 0; i < $scope.userTags.length; i++) {
-//                                    if ($scope.userTags[i].selected === true) {
-//                                        tempTags.push($scope.userTags[i].title);
-//                                    }
-//                                }
-//                                console.log(val + "--" + tempTags);
-//                                for (var i = 0; i < tempTags.length; i++) {
-//                                    if (i === (tempTags.length - 1)) {
-//                                        selectedTags += tempTags[i];
-//                                    }
-//                                    else {
-//                                        selectedTags += tempTags[i] + ",";
-//                                    }
-//                                }
-//                                //end of fetching tag string
-//                                console.log(selectedTags);
-//                                //tag fetching closed
-//                                if (selectedTags.length === 0 || selectedTags === " " || selectedTags === "") {
-//                                    todoObj.todoTag = null;
-//                                }
-//                                else {
-//                                    todoObj.todoTag = selectedTags;
-//                                }
-                                //$scope.todoList.unshift(todoObj);
+                                
                                 console.log(todoObj);
 //                                Alertuser.saveAlert("Saved..");
                                 var storedTodoTasks = $localStorage['todoTasks'];
@@ -690,11 +595,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                                     var x = new Date(new Date().toDateString()).getTime();
                                                     var finalTime = (new Date((dat.getTime() + tm.getTime()) - x));
                                                     console.log(finalTime);
-//                                                    console.log("ToDo :-" + parseInt($scope.todoAlarm));
-//                                                    console.log("Time :- " + todoObj.time);
-//                                                    console.log("Main Hoon Date");
-
-                                                    //schedule local notification fro saved todo
+//                                                    
                                                     console.log("Result Time")
                                                     var notificationArray = []
 
@@ -765,11 +666,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                         var finalTime = (new Date((dat.getTime() + tm.getTime()) - x));
                                         console.log(finalTime);
                                         console.log("Offline Main Hoon Date");
-//                                                console.log(result);
-//                                        console.log(finalTime);
-//                                        console.log("ToDo :-" + parseInt($scope.todoAlarm));
-//                                        console.log("Time :- " + todoObj.time);
-                                        
+//                                            
                                         if ($scope.todoAlarm) {
                                             //schedule local notification fro saved todo
                                             console.log("Result Time hai")
@@ -853,10 +750,7 @@ angular.module('create.controller', ["angular-datepicker"])
                                 });
                                 //set myToDoObject variable in cloud with values calling parse service
                                 var setToDoList = $q.when(ConnectParse.save(todoObj));
-//                                console.log(finalTime);
-//                                console.log("ToDo :-" + parseInt($scope.todoAlarm));
-//                                console.log("Time :- " + new Date(todoObj.time));
-                                
+
                                 if (todoObj.time && window.cordova) {
                                     var dat = new Date(todoObj.time);
                                     var tm = new Date(todoObj.alarmTime);
@@ -934,11 +828,6 @@ angular.module('create.controller', ["angular-datepicker"])
                                         $ionicHistory.nextViewOptions({
                                             disableBack: true
                                         });
-//                                        console.log(finalTime);
-//                                        console.log("ToDo :-" + parseInt($scope.todoAlarm));
-//                                        console.log("Time :- " + new Date(todoObj.time));
-//                                        console.log("Main Hoon Date 3");
-//                                        console.log("AlarmTime :- " + todoObj.alarmTime);
                                         if (todoObj.time) {
                                             var dat = new Date(todoObj.time);
                                             var tm = new Date(todoObj.alarmTime);
@@ -968,15 +857,3 @@ angular.module('create.controller', ["angular-datepicker"])
                         }
             };
         });
-
-//        window.plugin.notification.local.add({
-//            id: String(todoObj.position), // A unique id of the notification
-////                                                              date: new Date($scope.alarmTime), // This expects a date object
-//            text: result.title, // The message that is displayed
-//            title: "", // The title of the message
-////                                                        icon: 'ion-android-notifications',
-////                                                        icon: 'ion-android-notifications',
-//            at: finalTime,
-////                                                           every: 1
-////                                                          autoCancel: true // Setting this flag and the notification is automatically cancelled when the user clicks it
-//        });

@@ -21,15 +21,11 @@ angular.module('app.controller', [])
                         Alertuser.alert("press back again to exit");
                         $timeout(function () {
                             countBack = 0;
-//                            window.plugins.toast.hide();
-//                            window.plugins.toast.hide();
                         }, 2000);
                     } else if (countBack == 2) {
-//                        window.plugins.toast.hide();
                         navigator.app.exitApp();
                         countBack = 0;
                     }
-//                    Alertuser.alert(countBack);
 
                 }
                 else if ($state.$current.name == "login") {
@@ -100,7 +96,7 @@ angular.module('app.controller', [])
                             }
                         } else {
                             var fbid = $localStorage["Initializer"];
-                            console.log(fbid)
+                            console.log(fbid);
                             $scope.loggedUser = $localStorage["loggedUsername"];
                             $scope.userprofile = "http://graph.facebook.com/"+fbid+"/picture?type=square"
                         }
@@ -187,20 +183,12 @@ angular.module('app.controller', [])
                 ;
 
                 console.log("a");
-
                 $timeout(function () {
-
                     $state.go("login")
                     $ionicLoading.hide();
                 }, 1000);
                 Alertuser.alert("Logging out..");
                 $scope.ifLoogedIn = false;
-
-
-
                 console.log("c");
             }; // end of logout function
         });
-
-
-

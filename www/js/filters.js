@@ -6,15 +6,6 @@ angular.module('starter.filters', [])
         })
         .filter('sameweek', function () {
             return function (item) {
-//                console.log("SAME WEEK");
-//                 console.log(item);
-//                var alarmDate=new Date(item.alarmTime).toDateString();
-//                 var currDate=new Date().toDateString();
-//                    console.log("THIS WEEK");
-////                    console.log(items[i].title);
-//                    console.log(currDate);
-//                    console.log(alarmDate);
-//                    if(currDate!==alarmDate){
                 var d = new Date();
                 var curweek = getWeek(d);
                 d = new Date(item);
@@ -69,21 +60,11 @@ angular.module('starter.filters', [])
                     if (currDate === alarmDate) {
                         continue;
                     }else{
-//                    console.log("THIS WEEK");
-//                    console.log(items[i].title);
-//                    console.log(currDate);
-//                    console.log(new Date(items[i].alarmTime));
-//                    console.log(new Date(items[i].time))
-
-//                    console.log(alarmDate);
                     var itemweek = getWeek(d);
 //                    console.log(itemweek);
                     var curweek = getWeek(new Date());
 
                     if (itemweek === curweek) {
-//                        console.log("if cond")
-//                        console.log(itemweek);
-//                        console.log(curweek);
                             thisweekdays.push(items[i]);
                         
                         }

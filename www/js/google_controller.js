@@ -14,32 +14,6 @@ googleLoginService.factory('googleLogin', [
 
             return url.replace('code=', '');
 
-//            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-//            var regexS = "[\\#&]" + name + "=([^&#]*)";
-//            var regex = new RegExp(regexS);
-//            var results = regex.exec(url);
-//            if (results == null)
-//                return "";
-//            else
-//                return results[1];
-
-//            var match,
-//                    pl = /\+/g, // Regex for replacing addition symbol with a space
-//                    search = /([^&=]+)=?([^&]*)/g,
-//                    decode = function (s) {
-//                        return decodeURIComponent(s.replace(pl, " "));
-//                    },
-//                    query = url;
-//
-//            var urlParams = {};
-//            while (match = search.exec(query))
-//                urlParams[decode(match[1])] = decode(match[2]);
-//
-//            if (urlParams.name) {
-//                return urlParams.name;
-//            } else {
-//                return false;
-//            }
 
         };
         service.authorize = function (options) {
@@ -60,9 +34,6 @@ googleLoginService.factory('googleLogin', [
                 $log.info('Direct Access Token :' + access_token);
                 service.getUserInfo(access_token, def);
             } else {
-//                console.log(options.client_id);
-//                console.log(options.redirect_uri);
-//                console.log(options.scope);
                 var params = 'client_id=' + encodeURIComponent(options.client_id);
                 params += '&redirect_uri=' + encodeURIComponent(options.redirect_uri);
                 params += '&response_type=code';

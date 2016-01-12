@@ -500,8 +500,7 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 //                    alert("b");
                 checkTodoList = $q.when(ConnectParse.checkIfRecordExist(parseInt($localStorage["Initializer"])));
             }
-        }
-        checkTodoList.then(
+            checkTodoList.then(
                 function (result) {
                     var newIndex;
                     if (result.length > 0) {
@@ -534,6 +533,8 @@ myApp.controller('AddTodoCtrl', function (Alertuser, $ionicPlatform, $timeout, $
 //                            Alertuser.alert(error);
                     console.log(error);
                 });
+        }
+        
     };
 
     //calling for reorder data
